@@ -9,7 +9,7 @@ class PaginasController extends Controller
 
   // Funcion que retorna la vista del index|
   public function login(){
-    return view('auth/login');
+    return view('auth.login');
   }
 
   //funcion que retorna la vista del perfil de secretaria

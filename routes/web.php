@@ -13,7 +13,7 @@
 
 Route::get('/', 'PaginasController@login');
 
-Route::get('/Secretaria', [
+Route::post('/Secretaria', [
 
   'uses'=> 'PaginasController@viewSecretaria',
   'as' => 'secretaria'

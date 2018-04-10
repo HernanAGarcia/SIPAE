@@ -8,7 +8,7 @@
 @section('content')
 <div class="container">
 
-  <form class="form-signin" role="form" method="POST" action="{{ Route('secretaria.admin')}}">
+  <form class="form-signin" role="form" method="POST" action="{{ Route('secretaria')}}">
     {{ csrf_field() }}
     <div class="text-center mb-4">
 
