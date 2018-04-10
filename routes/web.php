@@ -11,6 +11,58 @@
 |
 */
 
-Route::get('/index', 'PaginasController@index');
-Route::get('/Secretaria', 'PaginasController@viewSecretaria');
-Route::get('/Institucion', 'PaginasController@viewInstitucion');
+Route::get('/', 'PaginasController@login');
+
+Route::post('/Secretaria', [
+
+  'uses'=> 'PaginasController@viewSecretaria',
+  'as' => 'secretaria'
+]);
+
+Route::get('/Secretaria/AgregarListadoPae', [
+
+  'uses'=> 'PaginasController@viewSecretariaListadosPAE',
+  'as' => 'secretaria.ListadoPae'
+]);
+
+Route::get('/Secretaria/alimentos', [
+
+  'uses'=> 'PaginasController@viewSecretariaListadoAlimentos',
+  'as' => 'secretaria.infoAlimentos'
+]);
+
+Route::get('/Secretaria/asistencias', [
+
+  'uses'=> 'PaginasController@viewSecretariaAsistencias',
+  'as' => 'secretaria.infoAsistencias'
+]);
+
+Route::get('/Secretaria/certificaciones', [
+
+  'uses'=> 'PaginasController@viewSecretariaCertificaciones',
+  'as' => 'secretaria.infoCertificaciones'
+]);
+
+Route::get('/Secretaria/modificarDatos', [
+
+  'uses'=> 'PaginasController@viewSecretariaModificarDatos',
+  'as' => 'secretaria.modificarDatos'
+]);
+
+
+//Rutas del perfil de institución
+Route::get('/institucion',[
+  'uses'=>'PaginasController@viewInicioInstitucion',
+  'as'=> 'institucion.inicio'
+
+]);
+
+Route::get('/institucion/cargaAsistencia',[
+  'uses'=>'PaginasController@viewInstitucionAsistencias',
+  'as'=> 'institucion.cargarAsistencia'
+
+]);
+
+
+
+Auth::routes();
