@@ -52,17 +52,23 @@ Route::get('/Secretaria/modificarDatos', [
 
 //Rutas del perfil de institución
 Route::get('/institucion',[
-  'uses'=>'PaginasController@viewInicioInstitucion',
+  'uses'=>'institucionController@viewInicioInstitucion',
   'as'=> 'institucion.inicio'
 
 ]);
 
 Route::get('/institucion/cargaAsistencia',[
-  'uses'=>'PaginasController@viewInstitucionAsistencias',
+  'uses'=>'institucionController@viewInstitucionAsistencias',
   'as'=> 'institucion.cargarAsistencia'
 
 ]);
 
+Route::get('/institucion/cargaInfoAlimentos',[
+  'uses'=>'institucionController@viewInstitucionAlimentos',
+  'as'=> 'institucion.cargarInfoAlimentos'
 
+]);
+
+Route::post('/subirArchivo','institucionController@subirArchivo');
 
 Auth::routes();

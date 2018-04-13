@@ -17,7 +17,7 @@
         <a class="nav-link" href="">Listado de Beneficiados</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Informes Alimentarios</a>
+        <a class="nav-link" href="{{ Route('institucion.cargarInfoAlimentos')}}">Informes Alimentarios</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="">Salir</a>
