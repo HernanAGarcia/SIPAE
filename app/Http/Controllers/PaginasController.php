@@ -17,7 +17,7 @@ class PaginasController extends Controller
     return view('secretaria.perfilSecretaria');
   }
 
-//Retorna la vista que permite cargar el listado de estudiantes del PAE
+  //Retorna la vista que permite cargar el listado de estudiantes del PAE
   public function viewSecretariaListadosPAE(){
     return view('secretaria.cargarListados');
   }
@@ -37,15 +37,5 @@ class PaginasController extends Controller
   public function viewSecretariaModificarDatos(){
     return view('secretaria.modificarDatos');
   }
-
-  //Funciones para las vistas del perfil de institucion
-  public function viewInicioInstitucion(){
-    return view('institucion.perfilInstitucion');
-  }
-
-  public function viewInstitucionAsistencias(){
-    return view('institucion.cargaListadoAsistencia');
-  }
-
 
 }
