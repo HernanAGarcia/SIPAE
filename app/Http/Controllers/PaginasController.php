@@ -3,7 +3,7 @@
 namespace SIPAE\Http\Controllers;
 
 use Illuminate\Http\Request;
-use SIPAE\Institucion;
+use SIPAE\institucion;
 use SIPAE\Sede_Institucion;
 
 class PaginasController extends Controller
@@ -29,7 +29,7 @@ class PaginasController extends Controller
   }
 
   public function viewSecretariaAsistencias(){
-    $listaInstitucion = Institucion::listar()->get();
+    $listaInstitucion = institucion::listar()->get();
     return view('secretaria.informeAsistencias',compact('listaInstitucion'));
   }
 
