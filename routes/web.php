@@ -13,6 +13,8 @@
 
 Route::get('/', 'PaginasController@login');
 
+Route::get('sedes/{id}','PaginasController@getSedes');
+
 Route::post('/Secretaria', [
 
   'uses'=> 'PaginasController@viewSecretaria',
@@ -70,5 +72,6 @@ Route::get('/institucion/cargaInfoAlimentos',[
 ]);
 
 Route::post('/subirArchivo','institucionController@subirArchivo');
+
 
 Auth::routes();
