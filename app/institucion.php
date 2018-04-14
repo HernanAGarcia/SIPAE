@@ -7,6 +7,10 @@ use Carbon\Carbon;
 class institucion extends Model
 {
 
+  protected $table = 'sedesInstitucion';
+  protected $fillable = ['nombre'];
+
+
     public function setPathAttribute($path){
         $this->attributes['path']= Carbon::now()->second.$path->getOriginalName();
         $name=Carbon::now()->second.$path->getOriginalName();
