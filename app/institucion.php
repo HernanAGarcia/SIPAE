@@ -18,7 +18,7 @@ class institucion extends Model
     }
 
     public function scopeListar($query){
-        return $query->select('nombre');
+        return $query->select('id','nombre');
     }
 
     public function scopeMostrar($query){
