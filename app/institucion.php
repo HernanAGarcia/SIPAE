@@ -4,7 +4,7 @@ namespace SIPAE;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-class Institucion extends Model
+class institucion extends Model
 {
 
   protected $table = 'Institucion';
@@ -18,6 +18,10 @@ class Institucion extends Model
     }
 
     public function scopeListar($query){
+        return $query->select('id','nombre');
+    }
+
+    public function scopeMostrar($query){
         return $query->select('nombre');
     }
 }
