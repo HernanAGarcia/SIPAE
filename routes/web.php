@@ -15,7 +15,7 @@ Route::get('/', 'PaginasController@login');
 
 Route::get('sedes/{id}','PaginasController@getSedes');
 
-Route::post('/Secretaria', [
+Route::get('/Secretaria', [
 
   'uses'=> 'PaginasController@viewSecretaria',
   'as' => 'secretaria'

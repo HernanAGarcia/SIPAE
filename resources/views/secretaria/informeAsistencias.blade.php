@@ -4,7 +4,12 @@
 <div class="container">
     <h1>Pagina de informes de asistencia de colegios</h1>
 
-    <?php echo Form::select('Institucion',$listaInstitucion)?>
+    <select name="select">
+                    <option disabled selected>Selecciona</option>
+                    @foreach($insts as $inst)
+                    <option value="{{$inst->nombre}}">{{$inst->nombre}}</option>
+                    @endforeach
+                </select>
 
     <?php echo Form::select('Sede') ?>
 

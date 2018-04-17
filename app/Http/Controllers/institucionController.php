@@ -25,7 +25,7 @@ class institucionController extends Controller
   //Metodo para subir el informe de alimentos registrado en cada colegio
   public function subirArchivo(Request $request){
     $file=$request->file('archivo');
-    $aleatorio= str_random( 6);
+
     $nombre =$file->getClientOriginalName();
 
     Storage::disk('informeAlimentos')->put($nombre,\File::get($file));
