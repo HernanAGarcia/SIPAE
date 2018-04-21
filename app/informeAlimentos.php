@@ -3,6 +3,7 @@
 namespace SIPAE;
 
 use Illuminate\Database\Eloquent\Model;
+<<<<<<< HEAD
 use Carbon\Carbon;
 
 class informeAlimentos extends Model
@@ -17,4 +18,10 @@ public function setRutaAttribute($ruta){
   $nombre= Carbon::now().$ruta->getOriginalName();
   Storage::disk('informeAlimentos')->put($nombre,\File::get($ruta));
 }
+=======
+
+class informeAlimentos extends Model
+{
+    //
+>>>>>>> master
 }

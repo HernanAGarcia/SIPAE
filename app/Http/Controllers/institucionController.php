@@ -4,6 +4,7 @@ namespace SIPAE\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 use Input;
 
 class institucionController extends Controller
@@ -25,12 +26,15 @@ class institucionController extends Controller
   //Metodo para subir el informe de alimentos registrado en cada colegio
   public function subirArchivo(Request $request){
     $file=$request->file('archivo');
+<<<<<<< HEAD
 
     $nombre =$file->getClientOriginalName();
+=======
+    $nombre =$file->getClientOriginalName().Carbon::now()->toDateString();
+>>>>>>> master
 
     Storage::disk('informeAlimentos')->put($nombre,\File::get($file));
-    return \View('institucion.archAlimentos')->with('respuesta','Archivo Subido');
-
+    return \View('institucion.archAlimentos')->with('respuesta','Archivo Subido'); 
 
   }
 }

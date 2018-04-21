@@ -3,6 +3,8 @@
 namespace SIPAE\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\http\Controllers\Controllers;
 use SIPAE\institucion;
 use SIPAE\Sede_Institucion;
 use Illuminate\Support\Facades\DB;
@@ -31,11 +33,18 @@ class PaginasController extends Controller
   }
 
   public function viewSecretariaAsistencias(){
+<<<<<<< HEAD
 
      $insts = DB::table('institucion')->get();
 
     return view('secretaria.informeAsistencias')->with('insts',$insts);
   }
+=======
+      $listaInstitucion=DB::table('institucion')->select('nombre','id')->get();
+      return view('secretaria.informeAsistencias')->with('listaInstitucion',$listaInstitucion);
+ }
+
+>>>>>>> master
 
   public function getSedes(Request $request, $id){
     if($request->ajax()){
