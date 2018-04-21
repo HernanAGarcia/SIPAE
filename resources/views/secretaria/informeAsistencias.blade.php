@@ -40,12 +40,12 @@
 @section('scripts')
 
 <script type="text/javascript">
-  $('#listaInstitucion').on('change'(function(e){
+  $('#lista-Institucion').on('change'(function(e){
 
     console.log(e);
   });
 </script>
 
-<script src="js/dropdown.js"></script>
+<script src="js/listaAsistencias.js"></script>
 
 @endsection

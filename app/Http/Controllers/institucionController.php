@@ -13,8 +13,6 @@ use File;
 class institucionController extends Controller
 {
 
-
-
   //Funciones para las vistas del perfil de institucion
   public function viewInicioInstitucion(){
     return view('institucion.perfilInstitucion');
@@ -29,13 +27,13 @@ class institucionController extends Controller
     //obtener nombres de los archivos en carpeta informeAlimentos
     $archivos = Storage::disk('informeAlimentos')->files();
     return view('institucion.archAlimentos')->with('archivos',$archivos);
-  } 
+  }
 
   //Metodo para subir el informe de alimentos registrado en cada colegio
   public function subirArchivo(Request $request){
     $file=$request->file('archivo');
     $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
-       
+
     Storage::disk('informeAlimentos')->put($nombre,\File::get($file));
 
     //para insertar en la base de datos
@@ -47,7 +45,7 @@ class institucionController extends Controller
     $informe->save();
 
     $archivos = Storage::disk('informeAlimentos')->files();
-    return \View('institucion.archAlimentos')->with('archivos',$archivos); 
+    return \View('institucion.archAlimentos')->with('archivos',$archivos);
 
   }
 
@@ -56,7 +54,7 @@ class institucionController extends Controller
 
     //obtener nombres de los archivos en carpeta informeAlimentos
      $archivos = Storage::disk('informeAlimentos')->files();
-     return \View('institucion.archAlimentos')->with('archivos',$archivos); 
+     return \View('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
   public function descargar($file){
