@@ -34,12 +34,9 @@ class PaginasController extends Controller
 
   public function viewSecretariaAsistencias(){
 
-     $insts = DB::table('institucion')->get();
-
-    return view('secretaria.informeAsistencias')->with('insts',$insts);
-  
-      $listaInstitucion=DB::table('institucion')->select('nombre','id')->get();
-      return view('secretaria.informeAsistencias')->with('listaInstitucion',$listaInstitucion);
+   
+      $listaInstitucion=institucion::listar()->get();
+      return view('secretaria.informeAsistencias',compact('listaInstitucion'));
   }
 
   public function getSedes($id){
