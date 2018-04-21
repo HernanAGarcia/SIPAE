@@ -30,17 +30,15 @@ class PaginasController extends Controller
     return view('secretaria.informeAlimentos');
   }
 
+
   public function viewSecretariaAsistencias(){
       $listaInstitucion=DB::table('institucion')->select('nombre','id')->get();
       return view('secretaria.informeAsistencias')->with('listaInstitucion',$listaInstitucion);
  }
 
-
-  public function getSedes(Request $request, $id){
-    if($request->ajax()){
-      $sedes = Sede_Institucion::sedes($id);
-      return response()->jason($sedes);
-    }
+  public function getSedes($id){
+      $sedeInstitucion = Sede_Institucion::listarSedes($id);
+      return response()->json($sedeInstitucion);
   }
 
   public function viewSecretariaCertificaciones(){

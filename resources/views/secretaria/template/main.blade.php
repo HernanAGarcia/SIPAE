@@ -39,16 +39,21 @@
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="{{asset('js/jquery-3.1.1.slim.min.js')}}" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <!--<script src="{{asset('js/jquery-3.1.1.slim.min.js')}}" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  -->
+
+  <script src="{{ asset('js/jquery-3.3.1.js')}}"></script>
   <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
   <script src="{{asset('js/tether.min.js')}}" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="js/bootstrap.min.js"></script>
+
 
   <script src="{{ asset('js/jquery.js')}}"></script>
 
 
-  {!! Html::script('js\jquery-3.2.1.slim.min.js')!!}
-  {!! Html::script('js\dropdown.js')!!}
+  <!--<script src="js/bootstrap.min.js"></script>-->
+
+
+  {!! Html::script('js\listaAsistencias.js')!!}
 
 </body>
 </html>
