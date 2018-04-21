@@ -30,42 +30,6 @@
       </div>
 
 
-    <div>
-      <table class="egt">
-
-        <tr>
-          <th scope="row">Día</th>
-          <th>Hoy</th>
-          <th>Mañana</th>
-          <th>Domingo</th>
-        </tr>
-
-        <tr>
-          <th>Condición</th>
-          <td>Soleado</td>
-          <td>Mayormente soleado</td>
-          <td>Parcialmente nublado</td>
-        </tr>
-
-        <tr>
-          <th>Temperatura</th>
-          <td>19°C</td>
-          <td>17°C</td>
-          <td>12°C</td>
-        </tr>
-
-        <tr>
-          <th>Vientos</th>
-          <td>E 13 km/h</td>
-          <td>E 11 km/h</td>
-          <td>S 16 km/h</td>
-        </tr>
-
-      </table>
-
-    </div>
-
-
 
 </div>
 
