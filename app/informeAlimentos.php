@@ -3,18 +3,15 @@
 namespace SIPAE;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
 class informeAlimentos extends Model
 {
 
-  protected $table = 'informeAlimentos';
+protected $table = 'informe_alimentos';
 
-protected $fillable = ['nombre','ruta'];
+protected $fillable = ['nombreArchivo','ruta'];
 
-public function setRutaAttribute($ruta){
-  $this->attributes['ruta']=Carbon::now().$ruta->getOriginalName();
-  $nombre= Carbon::now().$ruta->getOriginalName();
-  Storage::disk('informeAlimentos')->put($nombre,\File::get($ruta));
-}
+
 }

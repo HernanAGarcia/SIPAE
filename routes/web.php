@@ -75,7 +75,8 @@ Route::get('/institucion/cargaInfoAlimentos',[
 
 ]);
 
-Route::post('/institucion/subirArchivo','institucionController@subirArchivo');
+Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo');
 
+Route::post('/institucion/descargar','institucionController@descargar');
 
 Auth::routes();
