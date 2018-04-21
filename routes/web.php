@@ -14,44 +14,44 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/', 'PaginasController@login');
+Route::get('/', 'SecretariaController@login');
 
 
-Route::get('/sedes/{id}','PaginasController@getSedes');
+Route::get('/sedes/{id}','SecretariaController@getSedes');
 
 Route::get('/Secretaria', [
 
-  'uses'=> 'PaginasController@viewSecretaria',
+  'uses'=> 'SecretariaController@viewSecretaria',
   'as' => 'secretaria'
 ]);
 
 Route::get('/Secretaria/AgregarListadoPae', [
 
-  'uses'=> 'PaginasController@viewSecretariaListadosPAE',
+  'uses'=> 'SecretariaController@viewSecretariaListadosPAE',
   'as' => 'secretaria.ListadoPae'
 ]);
 
 Route::get('/Secretaria/alimentos', [
 
-  'uses'=> 'PaginasController@viewSecretariaListadoAlimentos',
+  'uses'=> 'SecretariaController@viewSecretariaListadoAlimentos',
   'as' => 'secretaria.infoAlimentos'
 ]);
 
 Route::get('/Secretaria/asistencias', [
 
-  'uses'=> 'PaginasController@viewSecretariaAsistencias',
+  'uses'=> 'SecretariaController@viewSecretariaAsistencias',
   'as' => 'secretaria.infoAsistencias'
 ]);
 
 Route::get('/Secretaria/certificaciones', [
 
-  'uses'=> 'PaginasController@viewSecretariaCertificaciones',
+  'uses'=> 'SecretariaController@viewSecretariaCertificaciones',
   'as' => 'secretaria.infoCertificaciones'
 ]);
 
 Route::get('/Secretaria/modificarDatos', [
 
-  'uses'=> 'PaginasController@viewSecretariaModificarDatos',
+  'uses'=> 'SecretariaController@viewSecretariaModificarDatos',
   'as' => 'secretaria.modificarDatos'
 ]);
 

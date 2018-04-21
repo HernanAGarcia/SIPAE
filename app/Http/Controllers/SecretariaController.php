@@ -8,8 +8,9 @@ use App\http\Controllers\Controllers;
 use SIPAE\institucion;
 use SIPAE\Sede_Institucion;
 use Illuminate\Support\CollectionStdClass;
+use Illuminate\Support\Facades\Storage;
 
-class PaginasController extends Controller
+class SecretariaController extends Controller
 {
 
   // Funcion que retorna la vista del index|
@@ -28,15 +29,26 @@ class PaginasController extends Controller
   }
 
   public function viewSecretariaListadoAlimentos(){
-    return view('secretaria.informeAlimentos');
+    //return view('secretaria.informeAlimentos');
+    $archivos = Storage::disk('informeAlimentos')->files();
+    $listaInstitucion = institucion::listar()->get();
+   return view('secretaria.informeAlimentos',compact('listaInstitucion','archivos'));
+
+
+  // $archivos = Storage::disk('informeAlimentos')->files();
+   //return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
-
-  public function viewSecretariaAsistencias(){
-
+<<<<<<< HEAD:app/Http/Controllers/PaginasController.php
    
       $listaInstitucion=institucion::listar()->get();
       return view('secretaria.informeAsistencias',compact('listaInstitucion'));
+=======
+
+  public function viewSecretariaAsistencias(){
+    $listaInstitucion = institucion::listar()->get();
+   return view('secretaria.informeAsistencias',compact('listaInstitucion'));
+>>>>>>> master:app/Http/Controllers/SecretariaController.php
   }
 
   public function getSedes($id){
