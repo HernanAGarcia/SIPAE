@@ -26,7 +26,7 @@
   @foreach($archivos as $archivo)
   <tr>
     <td><a value="{{$archivo}}">{{$archivo}}</a></td>
-    <td><a class="link" href="#" value="{{$archivo}}">Descargar</a></td> 
+    <td><a class="link" href="/institucion/cargarInfoAlimentos/{{$archivo}}">Descargar</a></td> 
     <!--En href va a la funcion de descargar-->
   </tr>
   @endforeach
