@@ -26,15 +26,15 @@ class institucionController extends Controller
   //Metodo para subir el informe de alimentos registrado en cada colegio
   public function subirArchivo(Request $request){
     $file=$request->file('archivo');
-<<<<<<< HEAD
-
-    $nombre =$file->getClientOriginalName();
-=======
     $nombre =$file->getClientOriginalName().Carbon::now()->toDateString();
->>>>>>> master
 
     Storage::disk('informeAlimentos')->put($nombre,\File::get($file));
     return \View('institucion.archAlimentos')->with('respuesta','Archivo Subido'); 
+
+  }
+
+  //Metodo para obtener y listar los archivos
+  public function listarArchivos(Request $request){
 
   }
 }
