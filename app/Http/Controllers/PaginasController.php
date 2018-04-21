@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\http\Controllers\Controllers;
 use SIPAE\institucion;
 use SIPAE\Sede_Institucion;
+use Illuminate\Support\CollectionStdClass;
 
 class PaginasController extends Controller
 {
@@ -32,9 +33,14 @@ class PaginasController extends Controller
 
 
   public function viewSecretariaAsistencias(){
+
+     $insts = DB::table('institucion')->get();
+
+    return view('secretaria.informeAsistencias')->with('insts',$insts);
+  
       $listaInstitucion=DB::table('institucion')->select('nombre','id')->get();
       return view('secretaria.informeAsistencias')->with('listaInstitucion',$listaInstitucion);
- }
+  }
 
   public function getSedes($id){
       $sedeInstitucion = Sede_Institucion::listarSedes($id);

@@ -1,5 +1,8 @@
 <?php
 
+
+
+use Illuminate\Support\Facades\Storage;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +19,7 @@ Route::get('/', 'PaginasController@login');
 
 Route::get('/sedes/{id}','PaginasController@getSedes');
 
-Route::post('/Secretaria', [
+Route::get('/Secretaria', [
 
   'uses'=> 'PaginasController@viewSecretaria',
   'as' => 'secretaria'
@@ -72,7 +75,11 @@ Route::get('/institucion/cargaInfoAlimentos',[
 
 ]);
 
-Route::post('/subirArchivo','institucionController@subirArchivo');
+Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo');
+
+//Route::get('/institucion/descargar','institucionController@descargar');
+
+Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar');
 
 
 Auth::routes();

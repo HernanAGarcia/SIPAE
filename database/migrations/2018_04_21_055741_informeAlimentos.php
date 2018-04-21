@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSedeInstitucionsTable extends Migration
+class InformeAlimentos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSedeInstitucionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Sede_Institucion', function (Blueprint $table) {
+        Schema::create('informe_Alimentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
-            $table->integer('Id_Institucion')->unsigned();
-            $table->foreign('Id_Institucion')->references('id')->on('Institucion');
+            $table->string('nombreArchivo');
+            $table->string('ruta');
+            $table->integer('Id_Sede_Institucion')->unsigned();
+            $table->foreign('Id_Sede_Institucion')->references('id')->on('Sede_Institucion');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateSedeInstitucionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sede__institucions');
+        Schema::dropIfExists('informe_alimentos');
     }
 }
