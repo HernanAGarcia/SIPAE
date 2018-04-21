@@ -39,16 +39,11 @@ class SecretariaController extends Controller
    //return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
-<<<<<<< HEAD:app/Http/Controllers/PaginasController.php
-   
-      $listaInstitucion=institucion::listar()->get();
-      return view('secretaria.informeAsistencias',compact('listaInstitucion'));
-=======
 
   public function viewSecretariaAsistencias(){
+    $archivos = Storage::disk('informeAlimentos')->files();
     $listaInstitucion = institucion::listar()->get();
-   return view('secretaria.informeAsistencias',compact('listaInstitucion'));
->>>>>>> master:app/Http/Controllers/SecretariaController.php
+   return view('secretaria.informeAsistencias',compact('listaInstitucion','archivos'));
   }
 
   public function getSedes($id){
