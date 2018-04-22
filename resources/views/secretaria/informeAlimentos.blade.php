@@ -5,29 +5,22 @@
   <h1>Informes de entrega de alimentos</h1><br>
 
   <div class="row" >
-      <div class="col-md-5">
-        <select name="listaInstitucion" id="lista-Institucion" class="form-group">
-            <option disabled selected>Seleccione institución</option>
+
+      <div class="col-md-6">
+        <select data-placeholder="Seleccione una institución"
+                class="chosen-select" name="listaInstitucion" id="lista-Institucion">
+                <option value=""></option>
             @foreach($listaInstitucion as $institucion)
             <option value="{{$institucion->id}}">{{$institucion->nombre}}</option>
             @endforeach
           </select>
-
       </div>
-
-      <div class="col-md-4">
-        <select name="listaSede" id="lista-Sede" class="form-group">
-            <option disabled selected>Seleccione sede</option>
-        </select>
-      </div>
-
 
       <div class="col-md-3">
         <button class="form-group">Mostrar</select>
       </div>
 
   </div>
-
 
 
   <div>
@@ -59,13 +52,6 @@
 
 
 @section('scripts')
-
-<script type="text/javascript">
-  $('#lista-Institucion').on('change'(function(e){
-
-    console.log(e);
-  });
-</script>
 
 <script src="js/listaAsistencias.js"></script>
 

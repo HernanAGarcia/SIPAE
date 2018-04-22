@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InformeAlimentos extends Migration
+class CreateEstudiantesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class InformeAlimentos extends Migration
      */
     public function up()
     {
-        Schema::create('informe_Alimentos', function (Blueprint $table) {
+        Schema::create('estudiante', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombreArchivo');
-            $table->string('ruta');
-            $table->Date('fecha');
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('grado');
+            $table->boolean('titular');
             $table->integer('Id_Sede_Institucion')->unsigned();
             $table->foreign('Id_Sede_Institucion')->references('id')->on('Sede_Institucion');
             $table->timestamps();
@@ -31,6 +32,6 @@ class InformeAlimentos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informe_alimentos');
+        Schema::dropIfExists('estudiantes');
     }
 }
