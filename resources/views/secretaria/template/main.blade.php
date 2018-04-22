@@ -16,6 +16,9 @@
   <!--Estilos-->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/navbar.css')}}" >
+  <link rel="stylesheet" href="{{asset('plugins/chosen/chosen.css')}}" >
+
+
 
   <!-- Scripts -->
   <script>
@@ -48,6 +51,9 @@
 
 
   <script src="{{ asset('js/jquery.js')}}"></script>
+  <script src="{{ asset('plugins/chosen/chosen.jquery.js')}}"></script>
+
+
 
 
   <!--<script src="js/bootstrap.min.js"></script>-->
