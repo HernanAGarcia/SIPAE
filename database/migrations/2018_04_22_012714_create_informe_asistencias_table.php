@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InformeAlimentos extends Migration
+class CreateInformeAsistenciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class InformeAlimentos extends Migration
      */
     public function up()
     {
-        Schema::create('informe_Alimentos', function (Blueprint $table) {
+        Schema::create('informe_asistencia', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombreArchivo');
             $table->string('ruta');
@@ -31,6 +31,6 @@ class InformeAlimentos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informe_alimentos');
+        Schema::dropIfExists('informe__asistencias');
     }
 }

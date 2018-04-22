@@ -29,19 +29,14 @@ class SecretariaController extends Controller
   }
 
   public function viewSecretariaListadoAlimentos(){
-    //return view('secretaria.informeAlimentos');
     $archivos = Storage::disk('informeAlimentos')->files();
-    $listaInstitucion = institucion::listar()->get();
+    $listaInstitucion = Sede_Institucion::listar()->get();
    return view('secretaria.informeAlimentos',compact('listaInstitucion','archivos'));
-
-
-  // $archivos = Storage::disk('informeAlimentos')->files();
-   //return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
 
   public function viewSecretariaAsistencias(){
-    $listaInstitucion = institucion::listar()->get();
+    $listaInstitucion = Sede_Institucion::listar()->get();
    return view('secretaria.informeAsistencias',compact('listaInstitucion'));
   }
 

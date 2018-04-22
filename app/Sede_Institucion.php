@@ -15,4 +15,8 @@ class Sede_Institucion extends Model
       return Sede_Institucion::where('Id_Institucion','=',$id)->get();
 
     }
+
+    public function scopeListar($query){
+        return $query->select('nombre','id', 'codigo');
+    }
 }
