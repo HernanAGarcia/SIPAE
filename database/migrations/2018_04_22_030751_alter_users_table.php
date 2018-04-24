@@ -18,7 +18,7 @@ class AlterUsersTable extends Migration
           $table->foreign('Id_Sede_Institucion')->references('id')->on('Sede_Institucion');
           $table->integer('Id_Secretaria')->unsigned();
           $table->foreign('Id_Secretaria')->references('id')->on('Secretaria');
-          
+
         });
     }
 

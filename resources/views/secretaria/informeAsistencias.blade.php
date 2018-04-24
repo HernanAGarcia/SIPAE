@@ -17,7 +17,7 @@
           </div>
 
           <div class="col-md-3">
-            <button class="boton" name="boton-mostrar">Mostrar</select>
+            <button class="boton2" name="boton-mostrar">Mostrar</select>
           </div>
 
       </div>
