@@ -9,11 +9,24 @@ use League\Flysystem\Filesystem;
 use Carbon\Carbon;
 use Input;
 use File;
+use DB;
 
 class institucionController extends Controller
 {
 
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
   //Funciones para las vistas del perfil de institucion
+  public function ViewLogin(){
+    return view('auth.loginInstitucion');
+  }
   public function viewInicioInstitucion(){
     return view('institucion.perfilInstitucion');
   }
