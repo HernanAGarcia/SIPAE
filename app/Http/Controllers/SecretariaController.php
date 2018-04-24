@@ -24,7 +24,7 @@ class SecretariaController extends Controller
      */
     public function __construct()
     {
-      $this->middleware('auth');
+      //$this->middleware('auth');
     }
 
 
@@ -48,8 +48,15 @@ class SecretariaController extends Controller
     return response()->json($archivos);
   }
 
+
+
+  public function getAsistencias($id){
+    $archivos = File::files('informeAsistencias/'.$id);
+    return response()->json($archivos);
+  }
+
   public function viewSecretariaAsistencias(){
-    $archivos = Storage::disk('informeAlimentos')->files();
+    //$archivos = Storage::disk('informeAlimentos')->files();
     $listaInstitucion = sede_institucion::listar()->get();
    return view('secretaria.informeAsistencias',compact('listaInstitucion','archivos'));
   }
