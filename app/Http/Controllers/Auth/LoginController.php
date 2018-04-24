@@ -3,29 +3,19 @@
 namespace SIPAE\Http\Controllers\Auth;
 
 use SIPAE\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
+    
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/Secretaria/admin';
+    protected $redirectTo = '/Secretaria';
 
     /**
      * Create a new controller instance.
@@ -35,5 +25,60 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+
+    public function index(){
+        return view('auth.loginSecretaria');
+    }
+
+    /**
+     * 
+     * 
+     */
+    public function login(Request $request){
+         
+        $credentials = $request->only('email', 'password');
+
+        
+        print_r($credentials);
+         if (Auth::attempt($credentials) && Auth::user()->role=='secretaria') {
+             echo Auth::user()->role;
+             echo 'esta en login ';
+           return redirect()->intended('Secretaria');
+         }else if(Auth::attempt($credentials) && Auth::user()->role=='institucion'){
+            return redirect()->intended('institucion');
+        //     return $request->expectsJson()
+        //         ? response()->json(['message' => $exception->getMessage()], 401)
+        //         : redirect()->guest(Route('inicio'));
+         }else{
+            return $request->expectsJson()
+                     ? response()->json(['message' => $exception->getMessage()], 401)
+                     : redirect()->guest(Route('inicio'));
+         }
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.loginSecretaria');
+    }
+    
+     /**
+     * Logout, Clear Session, and Return.
+     *
+     * @return void
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard();
     }
 }

@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse justify-content-md-center" id="navbarToggleExternalContent">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ Route('institucion.inicio')}}">Inicio<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ Route('institucion')}}">Inicio<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ Route('institucion.cargarAsistencia')}}">Cargar listados de Asistencia</a>

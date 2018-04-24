@@ -9,14 +9,22 @@ use SIPAE\institucion;
 use SIPAE\Sede_Institucion;
 use Illuminate\Support\CollectionStdClass;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class SecretariaController extends Controller
 {
 
-  // Funcion que retorna la vista del index|
-  public function login(){
-    return view('auth.login');
-  }
+
+      /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+
 
   //funcion que retorna la vista del perfil de secretaria
   public function viewSecretaria(){
@@ -36,8 +44,9 @@ class SecretariaController extends Controller
 
 
   public function viewSecretariaAsistencias(){
-    $listaInstitucion = Sede_Institucion::listar()->get();
-   return view('secretaria.informeAsistencias',compact('listaInstitucion'));
+    $archivos = Storage::disk('informeAlimentos')->files();
+    $listaInstitucion = sede_institucion::listar()->get();
+   return view('secretaria.informeAsistencias',compact('listaInstitucion','archivos'));
   }
 
   public function getSedes($id){
