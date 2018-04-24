@@ -14,7 +14,15 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
-Route::get('/', 'SecretariaController@login');
+Route::get('/',[
+  'uses'=>'Auth\LoginController@index',
+  'as'=>'inicio'])->middleware('guest');
+
+Route::post('/login','Auth\LoginController@login')->name('login');
+
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+
 
 
 Route::get('/sedes/{id}','SecretariaController@getSedes');
@@ -56,12 +64,13 @@ Route::get('/Secretaria/modificarDatos', [
 ]);
 
 
-//Rutas del perfil de institución
-Route::get('/institucion',[
-  'uses'=>'institucionController@viewInicioInstitucion',
-  'as'=> 'institucion.inicio'
 
-]);
+
+//Rutas del perfil de institución
+
+
+
+Route::get('/institucion','institucionController@viewInicioInstitucion')->name('institucion');
 
 Route::get('/institucion/cargaAsistencia',[
   'uses'=>'institucionController@viewInstitucionAsistencias',
@@ -82,4 +91,4 @@ Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchiv
 Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar');
 
 
-Auth::routes();
+//Auth::routes();

@@ -8,7 +8,7 @@
 @section('content')
 <div class="container">
 
-  <form class="form-signin" role="form" method="POST" action="{{ Route('secretaria')}}">
+  <form class="form-signin" role="form" method="POST" action="{{ route('login')}}">
     {{ csrf_field() }}
     <div class="text-center mb-4">
 
@@ -29,12 +29,13 @@
     </div>
 
     <div class="form-label-group{{ $errors->has('email') ? ' has-error' : '' }}">
-      <input type="email" id="input" class="form-control" placeholder="Nombre de Usuario" required="" autofocus="">
+      <input type="email" name="email" id="input" class="form-control" placeholder="Nombre de Usuario" required="" autofocus=""
+      >{!! $errors->first('email','<span class="help-block">:message</span>')!!}
       <label for="input"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre de Usuario</font></font></label>
     </div>
 
     <div class="form-label-group{{ $errors->has('password') ? ' has-error' : '' }}">
-      <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required="">
+      <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Contraseña" required="">
       <label for="inputPassword"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contraseña</font></font></label>
     </div>
 

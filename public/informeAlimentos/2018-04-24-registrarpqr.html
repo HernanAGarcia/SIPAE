@@ -1,0 +1,65 @@
+<h1>Registrar PQR</h1>
+<nav>
+	<ul>
+		<li><a href="index.html">Inicio PQR</a></li>
+		<li><a href="listarpqr.html">Ver lista de PQR</a></li>
+	</ul>
+</nav>
+
+<form action="">
+	<table>
+		<tr>
+			<td>
+				<span>Nombre :</span>
+			</td>
+			<td>
+				<input type="text" id="nombre" name="nombre" required>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>Email:</span>
+			</td>
+			<td>
+				<input type="text" id="email" name="email" required>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>Telefono:</span>
+			</td>
+			<td>
+				<input type="text" id="telefono" name="telefono" required>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>Ciudad</span>
+			</td>
+			<td>
+				<select name="ciudad" id="ciudad">
+					<option value="Armenia">Armenia</option>
+					<option value="Calarca">Calarca</option>
+					<option value="Circasia">Circasia</option>
+					<option value="Filandia">Filandia</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>Comentario:</span>
+			</td>
+			<td>
+				<textarea name="comentario" id="comentarios" cols="30" rows="10" placeholder="Digite su comentario"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<br><input type="button" id="enviar" name="enviar" value="enviar datos" width="150" height="150">
+			</td>
+		</tr>
+	</table>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+<script src="js/script.js" ></script>
