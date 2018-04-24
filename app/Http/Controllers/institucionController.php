@@ -2,7 +2,7 @@
 
 namespace SIPAE\Http\Controllers;
 
-use SIPAE\informeAlimentos;
+use SIPAE\informe_Alimentos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Filesystem;
@@ -21,7 +21,7 @@ class institucionController extends Controller
      */
     public function __construct()
     {
-      $this->middleware('auth');
+      $this->middleware('institucion');
     }
   //Funciones para las vistas del perfil de institucion
   public function ViewLogin(){
@@ -38,7 +38,7 @@ class institucionController extends Controller
   public function viewInstitucionAlimentos(){
 
     //obtener nombres de los archivos en carpeta informeAlimentos
-   
+    $archivos = Storage::disk('informeAlimentos')->files();
     
     return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
@@ -51,10 +51,11 @@ class institucionController extends Controller
     Storage::disk('informeAlimentos')->put($nombre,\File::get($file));
 
     //para insertar en la base de datos
-    $informe = new informeAlimentos;
+    $informe = new informe_Alimentos;
 
     $informe->nombrearchivo = $nombre;
     $informe->ruta="aqui va la ruta del servidor";
+    $informe->fecha=Carbon::now()->toDateString();
     $informe->id_Sede_Institucion='1';
     $informe->save();
 

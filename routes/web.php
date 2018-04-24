@@ -18,7 +18,7 @@ Route::get('/',[
   'uses'=>'Auth\LoginController@index',
   'as'=>'inicio'])->middleware('guest');
 
-Route::post('/institucion','Auth\LoginController@login')->name('institucion');
+Route::post('/login','Auth\LoginController@login')->name('login');
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
@@ -70,7 +70,7 @@ Route::get('/Secretaria/modificarDatos', [
 
 
 
-//Route::get('/institucion','institucionController@viewInicioInstitucion')->name('institucion');
+Route::get('/institucion','institucionController@viewInicioInstitucion')->name('institucion');
 
 Route::get('/institucion/cargaAsistencia',[
   'uses'=>'institucionController@viewInstitucionAsistencias',

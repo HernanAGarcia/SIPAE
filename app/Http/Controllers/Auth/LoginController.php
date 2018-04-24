@@ -15,7 +15,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/institucion';
+    protected $redirectTo = '/Secretaria';
 
     /**
      * Create a new controller instance.
@@ -42,14 +42,19 @@ class LoginController extends Controller
 
         
         print_r($credentials);
-         if (Auth::attempt($credentials)) {
-             echo Auth::user();
-             echo 'esta en login';
-        //     return redirect()->intended('institucion');
-         }else{
+         if (Auth::attempt($credentials) && Auth::user()->role=='secretaria') {
+             echo Auth::user()->role;
+             echo 'esta en login ';
+           return redirect()->intended('Secretaria');
+         }else if(Auth::attempt($credentials) && Auth::user()->role=='institucion'){
+            return redirect()->intended('institucion');
         //     return $request->expectsJson()
         //         ? response()->json(['message' => $exception->getMessage()], 401)
         //         : redirect()->guest(Route('inicio'));
+         }else{
+            return $request->expectsJson()
+                     ? response()->json(['message' => $exception->getMessage()], 401)
+                     : redirect()->guest(Route('inicio'));
          }
     }
 

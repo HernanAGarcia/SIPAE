@@ -14,10 +14,10 @@ class institucionMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next,$guard = null)
     {
-        if (Auth::check()) {
-            return redirect('Secretaria');
+        if (Auth::check() && Auth::user()->role=='institucion') {
+            return redirect('institucion');
         }
 
         return $next($request);
