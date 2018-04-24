@@ -17,7 +17,7 @@
       </div>
 
       <div class="col-md-3">
-        <button class="form-group">Mostrar</select>
+        <button class="boton">Mostrar</select>
       </div>
 
   </div>
@@ -25,18 +25,14 @@
 
   <div>
 
-   <table class="table table-hover">
+   <table class="table table-hover" id="tabla">
     <tr>
       <th>Nombre</th>
       <th>Opciones</th>
     </tr>
-    @foreach($archivos as $archivo)
-    <tr>
-      <td><a value="{{$archivo}}">{{$archivo}}</a></td>
-      <td><a class="link" href="/institucion/cargarInfoAlimentos/{{$archivo}}">Descargar</a></td>
-      <!--En href va a la funcion de descargar-->
-    </tr>
-    @endforeach
+
+    
+
   </table>
 
 

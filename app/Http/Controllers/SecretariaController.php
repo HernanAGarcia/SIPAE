@@ -9,7 +9,9 @@ use SIPAE\institucion;
 use SIPAE\Sede_Institucion;
 use Illuminate\Support\CollectionStdClass;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
+
 
 class SecretariaController extends Controller
 {
@@ -37,11 +39,14 @@ class SecretariaController extends Controller
   }
 
   public function viewSecretariaListadoAlimentos(){
-    $archivos = Storage::disk('informeAlimentos')->files();
     $listaInstitucion = Sede_Institucion::listar()->get();
    return view('secretaria.informeAlimentos',compact('listaInstitucion','archivos'));
   }
 
+  public function getFiles($id){
+    $archivos = File::files('informeAlimentos/'.$id);
+    return response()->json($archivos);
+  }
 
   public function viewSecretariaAsistencias(){
     $archivos = Storage::disk('informeAlimentos')->files();
@@ -49,10 +54,6 @@ class SecretariaController extends Controller
    return view('secretaria.informeAsistencias',compact('listaInstitucion','archivos'));
   }
 
-  public function getSedes($id){
-      $sedeInstitucion = Sede_Institucion::listarSedes($id);
-      return response()->json($sedeInstitucion);
-  }
 
   public function viewSecretariaCertificaciones(){
     return view('secretaria.informeCertificacion');

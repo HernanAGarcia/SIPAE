@@ -17,12 +17,35 @@
           </div>
 
           <div class="col-md-3">
-            <button class="form-grou" name="boton-mostrar">Mostrar</select>
+            <button class="boton" name="boton-mostrar">Mostrar</select>
           </div>
 
       </div>
 
+      <div>
+
+       <table class="table table-hover" id="tabla">
+        <tr>
+          <th>Nombre</th>
+          <th>Opciones</th>
+        </tr>
+
+
+
+      </table>
+
+
+
+      </div>
+
+
+
+
 </div>
+
+
+
+
 
 @endsection
 

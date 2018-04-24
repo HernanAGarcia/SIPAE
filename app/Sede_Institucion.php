@@ -16,6 +16,15 @@ class Sede_Institucion extends Model
 
     }
 
+    public static function rutas($id){
+    //  $sedesInst=DB::table('Sede_Institucion')->where('Id_Institucion','=',$id)->get();
+    //$archivos = File::files("informeAlimentos/1");
+      return File::files('informeAlimentos/1');
+
+    }
+
+
+
     public function scopeListar($query){
         return $query->select('nombre','id', 'codigo');
     }
