@@ -1,0 +1,7 @@
+#archivo de prueba
+#documento|institucion|nombre|apellido|titular|asistencia
+123456789;1;camilo andres;gonzales marin;true;true
+123123123;1;carlos mario;ramirez sanchez;true;true
+121212121;1;julia ;echeverry lopez;true;false
+987654321;1;luis felipe;marin barrios;true;true
+321321321;1;juan jose;barrios gonzales;false;true
