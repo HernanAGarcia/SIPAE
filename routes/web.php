@@ -64,6 +64,11 @@ Route::get('/Secretaria/modificarDatos', [
 ]);
 
 
+Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInforme');
+
+Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaController@descargarAsistencia');
+
+
 
 
 //Rutas del perfil de institución

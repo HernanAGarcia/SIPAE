@@ -20,7 +20,7 @@ $(function() {
 });
 
 
-$('.boton').on('click', function(){
+$('.botonAlimento').on('click', function(){
 
 $('#tabla tr:not(:first-child)').slice(0).remove();
 
@@ -29,22 +29,22 @@ $('#tabla tr:not(:first-child)').slice(0).remove();
   for (var i = 0; i < data.length; i++){
 
   $('#tabla > tbody:last-child').append('<tr><td>'+'<a value="">'+data[i]+'</a>'+
-  '</td><td>'+'<a class="link" href="/institucion/cargarInfoAlimentos/'+data[i]+'">Descargar</a>'+'</td></tr>');
+  '</td><td>'+'<a class="link" href="/secretaria/alimentos/'+data[i]+'">Descargar</a>'+'</td></tr>');
   }
 
 })});
 
 
-$('.boton2').on('click', function(){
+$('.botonAsistencias').on('click', function(){
 
 $('#tabla tr:not(:first-child)').slice(0).remove();
 
-  $.get("/api/sedes/"+institucion_id+"/asistenaicas", function(data){
+  $.get("/api/sedes/"+institucion_id+"/asistencias", function(data){
 
   for (var i = 0; i < data.length; i++){
 
   $('#tabla > tbody:last-child').append('<tr><td>'+'<a value="">'+data[i]+'</a>'+
-  '</td><td>'+'<a class="link" href="/institucion/cargarInfoAlimentos/'+data[i]+'">Descargar</a>'+'</td></tr>');
+  '</td><td>'+'<a class="link" href="/secretaria/asistencias/'+data[i]+'">Descargar</a>'+'</td></tr>');
   }
 
 })});

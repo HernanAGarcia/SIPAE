@@ -17,7 +17,7 @@
       </div>
 
       <div class="col-md-3">
-        <button class="boton">Mostrar</select>
+        <button class="botonAlimento">Mostrar</select>
       </div>
 
   </div>
@@ -31,7 +31,7 @@
       <th>Opciones</th>
     </tr>
 
-    
+
 
   </table>
 
