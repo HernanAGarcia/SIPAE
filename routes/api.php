@@ -19,4 +19,4 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/sedes/{id}/sedes','SecretariaController@getFiles');
-Route::get('/sedes/{id}/asistenaicas','SecretariaController@getAsistencias');
+Route::get('/sedes/{id}/asistencias','SecretariaController@getAsistencias');

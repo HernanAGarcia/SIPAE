@@ -39,7 +39,7 @@ class institucionController extends Controller
 
     //obtener nombres de los archivos en carpeta informeAlimentos
     $archivos = Storage::disk('informeAlimentos')->files();
-    
+
     return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
@@ -73,7 +73,6 @@ class institucionController extends Controller
   }
 
   public function descargar($file){
-
     $pathtoFile = public_path().'\\informeAlimentos\\'.$file;
     return response()->download($pathtoFile);
   }

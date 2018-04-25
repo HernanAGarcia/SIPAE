@@ -44,16 +44,15 @@ class SecretariaController extends Controller
   }
 
   public function getFiles($id){
-    $archivos = File::files('informeAlimentos/'.$id);
+    $archivos = File::files('informeAlimentos\\'.$id);
     return response()->json($archivos);
   }
 
-
-
-  public function getAsistencias($id){
-    $archivos = File::files('informeAsistencias/'.$id);
-    return response()->json($archivos);
+  public function descargarInforme($file, $file2, $file3){
+    $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
+    return response()->download($pathtoFile);
   }
+
 
   public function viewSecretariaAsistencias(){
     //$archivos = Storage::disk('informeAlimentos')->files();
@@ -61,6 +60,15 @@ class SecretariaController extends Controller
    return view('secretaria.informeAsistencias',compact('listaInstitucion','archivos'));
   }
 
+  public function getAsistencias($id){
+    $archivos = File::files('informeAsistencias\\'.$id);
+    return response()->json($archivos);
+  }
+
+  public function descargarAsistencia($file, $file2, $file3){
+    $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
+    return response()->download($pathtoFile);
+  }
 
   public function viewSecretariaCertificaciones(){
     return view('secretaria.informeCertificacion');
