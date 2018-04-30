@@ -16,7 +16,9 @@ class institucionMiddleware
      */
     public function handle($request, Closure $next,$guard = null)
     {
-        if (Auth::check() && Auth::user()->role¡=='institucion') {
+
+        
+        if (Auth::check() && Auth::user()->role=='institucion') {
             return redirect('institucion');
         }
 

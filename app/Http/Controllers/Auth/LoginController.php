@@ -39,18 +39,17 @@ class LoginController extends Controller
     public function login(Request $request){
          
         $credentials = $request->only('email', 'password');
+        echo $request;
 
         
         print_r($credentials);
          if (Auth::attempt($credentials) && Auth::user()->role=='secretaria') {
-             echo Auth::user()->role;
-             echo 'esta en login ';
+          
            return redirect()->intended('Secretaria');
          }else if(Auth::attempt($credentials) && Auth::user()->role=='institucion'){
+            
             return redirect()->intended('institucion');
-        //     return $request->expectsJson()
-        //         ? response()->json(['message' => $exception->getMessage()], 401)
-        //         : redirect()->guest(Route('inicio'));
+        
          }else{
             return $request->expectsJson()
                      ? response()->json(['message' => $exception->getMessage()], 401)
