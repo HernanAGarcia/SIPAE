@@ -53,5 +53,6 @@ class Kernel extends HttpKernel
         'guest' => \SIPAE\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'institucion' => \SIPAE\Http\Middleware\institucionMiddleware::class,
+        'secretaria' => \SIPAE\Http\Middleware\secretariaMiddleware::class,
     ];
 }
