@@ -21,10 +21,6 @@
         <br>
         <font style="vertical-align: inherit;">Secretaria de Educación. </font>
       </p>
-      <h1 class="h3 mb-3 font-weight-normal">
-
-        <font style="vertical-align: inherit;">{{Auth::user()}}</font>
-      </h1>
 
     </div>
 

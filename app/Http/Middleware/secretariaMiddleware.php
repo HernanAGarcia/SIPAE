@@ -5,7 +5,7 @@ namespace SIPAE\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class institucionMiddleware
+class secretariaMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class institucionMiddleware
     public function handle($request, Closure $next,$guard = null)
     {
          if (Auth::check()) {
-            if(Auth::user()->role!='institucion'){
+            if(Auth::user()->role!='secretaria'){
                 return redirect('/');
             }
          }
