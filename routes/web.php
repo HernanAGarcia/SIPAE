@@ -106,10 +106,10 @@ Route::get('/institucion/cargaInfoAlimentos',[
 
 Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo')->middleware('institucion');
 
-Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo')->middleware('institucion');
+
 
 Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');;
-Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');
+
 
 
 //Auth::routes();
