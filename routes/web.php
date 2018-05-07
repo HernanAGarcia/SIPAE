@@ -58,7 +58,6 @@ Route::get('/Secretaria/asistencias', [
 ])->middleware('secretaria');
 
 Route::get('/Secretaria/certificaciones', [
-
   'uses'=> 'SecretariaController@viewSecretariaCertificaciones',
   'as' => 'secretaria.infoCertificaciones'
 ])->middleware('secretaria');
@@ -81,8 +80,9 @@ Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController
 
 Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaController@descargarAsistencia')->middleware('secretaria');
 
-
-
+Route::get('/secretaria/descargarCertificados/{file}', 'SecretariaController@descargar')->middleware('secretaria');
+Route::post('/secretaria/certificaciones','SecretariaController@subirArchivo')->middleware('secretaria');
+Route::get('/secretaria/verCertificados/{file}', 'SecretariaController@verCertificado')->middleware('secretaria');
 
 //Rutas del perfil de institución
 
@@ -90,25 +90,21 @@ Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaControll
 
 Route::get('/institucion',[
   'uses'=>'institucionController@viewInicioInstitucion',
-  'as'=>'institucion'])->middleware('institucion');
+  'as'=>'institucion'
+  ])->middleware('institucion');
 
 Route::get('/institucion/cargaAsistencia',[
   'uses'=>'institucionController@viewInstitucionAsistencias',
   'as'=> 'institucion.cargarAsistencia'
-
-])->middleware('institucion');
+  ])->middleware('institucion');
 
 Route::get('/institucion/cargaInfoAlimentos',[
   'uses'=>'institucionController@viewInstitucionAlimentos',
   'as'=> 'institucion.cargarInfoAlimentos'
-
-])->middleware('institucion');
-
-Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo')->middleware('institucion');
+  ])->middleware('institucion');
 
 Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo')->middleware('institucion');
 
-Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');;
 Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');
 
 
@@ -120,4 +116,3 @@ Route::get('/operador',[
   'uses'=>'operadorController@inicio',
   'as'=>'operador'
 ]);
-
