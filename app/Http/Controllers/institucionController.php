@@ -24,10 +24,9 @@ class institucionController extends Controller
       $this->middleware('institucion');
     }
   //Funciones para las vistas del perfil de institucion
-  public function ViewLogin(){
-    return view('auth.loginInstitucion');
-  }
+
   public function viewInicioInstitucion(){
+    
     return view('institucion.perfilInstitucion');
   }
 

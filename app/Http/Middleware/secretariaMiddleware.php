@@ -16,14 +16,12 @@ class secretariaMiddleware
      */
     public function handle($request, Closure $next,$guard = null)
     {
-
-        
-        if (Auth::check()) {
+         if (Auth::check()) {
             if(Auth::user()->role!='secretaria'){
                 return redirect('/');
             }
          }
 
-        return $next($request);
+         return $next($request);
     }
 }

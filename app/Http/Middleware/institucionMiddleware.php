@@ -16,14 +16,12 @@ class institucionMiddleware
      */
     public function handle($request, Closure $next,$guard = null)
     {
-
-        
-        if (Auth::check()) {
+         if (Auth::check()) {
             if(Auth::user()->role!='institucion'){
                 return redirect('/');
             }
          }
 
-        return $next($request);
+         return $next($request);
     }
 }

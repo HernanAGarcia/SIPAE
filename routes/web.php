@@ -77,6 +77,8 @@ Route::post('/secretaria/regInstitucion',[
 
 Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInforme')->middleware('secretaria');
 
+Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInforme')->middleware('secretaria');
+
 Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaController@descargarAsistencia')->middleware('secretaria');
 
 
@@ -102,10 +104,12 @@ Route::get('/institucion/cargaInfoAlimentos',[
 
 ])->middleware('institucion');
 
+Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo')->middleware('institucion');
 
 Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo')->middleware('institucion');
 
 Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');;
+Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');
 
 
 //Auth::routes();
