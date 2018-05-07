@@ -13,9 +13,18 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ Route('secretaria.registrarInstituciones')}}">Registrar Instituciones</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ Route('secretaria.ListadoPae')}}">Cargar Listados</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Cargar Informes
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ Route('secretaria.ListadoPae')}}">Listados de beneficiarios</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ Route('secretaria.infoCertificaciones')}}">Informes de Certificación</a>
+        </div>
       </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Ver Informes
@@ -24,10 +33,9 @@
           <a class="dropdown-item" href="{{ Route('secretaria.infoAsistencias')}}">Informes de Asistencia</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="{{ Route('secretaria.infoAlimentos')}}">Informes de Alimentos</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ Route('secretaria.infoCertificaciones')}}">Infomes de certificaion</a>
         </div>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="{{ Route('secretaria.modificarDatos')}}">Modificar Datos Usuario</a>
       </li>
