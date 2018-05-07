@@ -39,10 +39,7 @@ class LoginController extends Controller
     public function login(Request $request){
          
         $credentials = $request->only('email', 'password');
-        echo $request;
-
         
-        print_r($credentials);
          if (Auth::attempt($credentials) && Auth::user()->role=='secretaria') {
           
            return redirect()->intended('Secretaria');
@@ -50,7 +47,12 @@ class LoginController extends Controller
             
             return redirect()->intended('institucion');
         
-         }else{
+         }else if(Auth::attempt($credentials) && Auth::user()->role=='operador'){
+            
+            return redirect()->intended('operador');
+        
+         }
+         else{
             return $request->expectsJson()
                      ? response()->json(['message' => $exception->getMessage()], 401)
                      : redirect()->guest(Route('inicio'));

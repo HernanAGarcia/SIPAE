@@ -30,6 +30,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \SIPAE\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
         ],
 
         'api' => [
@@ -54,5 +55,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'institucion' => \SIPAE\Http\Middleware\institucionMiddleware::class,
         'secretaria' => \SIPAE\Http\Middleware\secretariaMiddleware::class,
+        'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
     ];
 }
