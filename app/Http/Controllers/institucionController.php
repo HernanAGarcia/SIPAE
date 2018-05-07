@@ -26,7 +26,7 @@ class institucionController extends Controller
   //Funciones para las vistas del perfil de institucion
 
   public function viewInicioInstitucion(){
-    
+
     return view('institucion.perfilInstitucion');
   }
 
@@ -35,10 +35,8 @@ class institucionController extends Controller
   }
 
   public function viewInstitucionAlimentos(){
-
     //obtener nombres de los archivos en carpeta informeAlimentos
     $archivos = Storage::disk('informeAlimentos')->files();
-
     return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
 

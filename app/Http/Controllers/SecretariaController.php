@@ -10,10 +10,12 @@ use SIPAE\Sede_Institucion;
 use Illuminate\Support\CollectionStdClass;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use League\Flysystem\Filesystem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 use Alert;
-
+use Input;
 
 class SecretariaController extends Controller
 {
@@ -31,28 +33,28 @@ class SecretariaController extends Controller
 
 
   /**
-   * 
+   *
    */
   public function viewSecretaria(){
     return view('secretaria.perfilSecretaria');
   }
 
   /**
-   * 
+   *
    */
   public function viewSecretariaListadosPAE(){
     return view('secretaria.cargarListados');
   }
 
   /**
-   * 
+   *
    */
   public function viewRegInstitucion(){
     return view('secretaria.registroInstitucion');
   }
 
   /**
-   * 
+   *
    */
   public function viewSecretariaListadoAlimentos(Request $request){
     $listaInstitucion = Sede_Institucion::listar()->get();
@@ -60,7 +62,7 @@ class SecretariaController extends Controller
   }
 
   /**
-   * 
+   *
    */
   public function getFiles($id){
     $archivos = File::files('informeAlimentos\\'.$id);
@@ -68,7 +70,7 @@ class SecretariaController extends Controller
   }
 
   /**
-   * 
+   *
    */
   public function descargarInforme($file, $file2, $file3){
     $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
@@ -77,7 +79,7 @@ class SecretariaController extends Controller
 
 
   /**
-   * 
+   *
    */
   public function viewSecretariaAsistencias(){
     //$archivos = Storage::disk('informeAlimentos')->files();
@@ -86,7 +88,7 @@ class SecretariaController extends Controller
   }
 
   /**
-   * 
+   *
    */
   public function getAsistencias($id){
     $archivos = File::files('informeAsistencias\\'.$id);
@@ -94,7 +96,7 @@ class SecretariaController extends Controller
   }
 
   /**
-   * 
+   *
    */
   public function descargarAsistencia($file, $file2, $file3){
     $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
@@ -102,21 +104,23 @@ class SecretariaController extends Controller
   }
 
   /**
-   * 
+   *
    */
   public function viewSecretariaCertificaciones(){
-    return view('secretaria.informeCertificacion');
+    $certificados = Storage::disk('informeCobertura')->files();
+    return view('secretaria.informeCertificacion')->with('certificados',$certificados);
+    //return view('secretaria.informeCertificacion');
   }
 
   /**
-   * 
+   *
    */
   public function viewSecretariaModificarDatos(){
     return view('secretaria.modificarDatos');
   }
 
   /**
-   * 
+   *
    */
   public function registrarInstitucion(Request $request){
 
@@ -130,13 +134,13 @@ class SecretariaController extends Controller
 
     $idSecretaria= Auth::user()->id;
 
-    
+
       $verificacion=$this->verificarRegistro($nit,$correoElectronico);
      if(!$verificacion){
           alert()->error('El Nit y el Correo de la institucion ya existe', 'Error')->persistent('Close');
           return redirect()->back();
       }else{
-  
+
         //ingresar a la tabla de instituciones
          $idInstitucion=DB::table('sede_institucion')->insertGetId(['nombre'=>$nombreInstitucion,'rector'=>$rector,
          'codigo'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
@@ -149,8 +153,8 @@ class SecretariaController extends Controller
            alert()->success('Registro completo', 'Aceptado')->persistent('Close');
            return redirect()->back();
       }
-    
-    
+
+
  }
 
  public function verificarRegistro($nit,$correo){
@@ -161,6 +165,41 @@ class SecretariaController extends Controller
       return false;
     }
     return true;
-   
+
   }
-}
+
+
+
+
+  public function subirArchivo(Request $request){
+    $file=$request->file('archivo');
+    $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
+
+    Storage::disk('informeCobertura')->put($nombre,\File::get($file));
+
+    //para insertar en la base de datos
+
+    //  $archivos = Storage::disk('informeAlimentos')->files();
+    //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
+
+    $certificados = Storage::disk('informeCobertura')->files();
+    return \View('secretaria.informeCertificacion')->with('certificados',$certificados);
+
+  }
+
+
+
+  public function descargar($file){
+    $pathtoFile = public_path().'\\informeCobertura\\'.$file;
+    return response()->download($pathtoFile);
+  }
+
+
+  public function verCertificado($file){
+    $pathtoFile = public_path().'\\informeCobertura\\'.$file;
+    return response()->file($pathtoFile);
+  }
+
+
+
+}//fin del controller

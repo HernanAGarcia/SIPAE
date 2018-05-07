@@ -53,6 +53,11 @@ return [
             'root' => public_path('informeAlimentos'),
         ],
 
+        'informeCobertura' => [
+            'driver' => 'local',
+            'root' => public_path('informeCobertura'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

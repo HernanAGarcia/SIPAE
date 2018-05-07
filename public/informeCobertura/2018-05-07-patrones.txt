@@ -1,0 +1,4 @@
+https://laraveles.com/conociendo-el-command-pattern/
+
+https://styde.net/facades-personalizados-en-laravel-5-1/
+https://code.tutsplus.com/es/tutorials/what-are-laravel-50-facades--cms-25347
