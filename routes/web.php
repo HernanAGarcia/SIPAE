@@ -25,7 +25,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
 
-Route::get('/sedes/{id}','SecretariaController@getSedes');
+Route::get('/sedes/{id}','SecretariaController@getSedes')->middleware('secretaria');
 
 Route::get('/Secretaria', [
 
@@ -37,6 +37,12 @@ Route::get('/Secretaria/AgregarListadoPae', [
 
   'uses'=> 'SecretariaController@viewSecretariaListadosPAE',
   'as' => 'secretaria.ListadoPae'
+])->middleware('secretaria');
+
+Route::get('/Secretaria/registrarInstituciones', [
+
+  'uses'=> 'SecretariaController@viewRegInstitucion',
+  'as' => 'secretaria.registrarInstituciones'
 ])->middleware('secretaria');
 
 Route::get('/Secretaria/alimentos', [
@@ -63,6 +69,13 @@ Route::get('/Secretaria/modificarDatos', [
   'as' => 'secretaria.modificarDatos'
 ])->middleware('secretaria');
 
+Route::post('/secretaria/regInstitucion',[
+  'uses'=>'secretariaController@registrarInstitucion',
+  'as'=> 'registrarInstitucion'
+
+])->middleware('secretaria');
+
+Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInforme')->middleware('secretaria');
 
 Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInforme')->middleware('secretaria');
 
@@ -82,6 +95,7 @@ Route::get('/institucion',[
 Route::get('/institucion/cargaAsistencia',[
   'uses'=>'institucionController@viewInstitucionAsistencias',
   'as'=> 'institucion.cargarAsistencia'
+
 ])->middleware('institucion');
 
 Route::get('/institucion/cargaInfoAlimentos',[
@@ -92,9 +106,18 @@ Route::get('/institucion/cargaInfoAlimentos',[
 
 Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo')->middleware('institucion');
 
-//Route::get('/institucion/descargar','institucionController@descargar');
+Route::post('/institucion/cargaInfoAlimentos','institucionController@subirArchivo')->middleware('institucion');
 
+Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');;
 Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');
 
 
 //Auth::routes();
+//Route::get('/institucion/descargar','institucionController@descargar');
+
+//rutas para el perfil de operador
+Route::get('/operador',[
+  'uses'=>'operadorController@inicio',
+  'as'=>'operador'
+]);
+

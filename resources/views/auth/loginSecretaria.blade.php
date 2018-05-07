@@ -21,13 +21,12 @@
         <br>
         <font style="vertical-align: inherit;">Secretaria de Educación. </font>
       </p>
-
     </div>
 
-    <div class="form-label-group{{ $errors->has('email') ? ' has-error' : '' }}">
-      <input type="email" name="email" id="input" class="form-control" placeholder="Nombre de Usuario" required="" autofocus=""
-      >{!! $errors->first('email','<span class="help-block">:message</span>')!!}
-      <label for="input"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre de Usuario</font></font></label>
+    <div class="form-label-group {{ $errors->has('email') ? ' has-error' : '' }}">
+      <input type="email" name="email" id="input" class="form-control" placeholder="Correo Electronico" required="" autofocus="">
+      {!! $errors->first('email','<span class="help-block">:message</span>')!!}
+      <label for="input"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Correo Electronico</font></font></label>
     </div>
 
     <div class="form-label-group{{ $errors->has('password') ? ' has-error' : '' }}">
