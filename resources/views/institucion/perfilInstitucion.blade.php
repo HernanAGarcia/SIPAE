@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Pagina de Inicio de Institucion</h1>
+    <h1>Bienvenido Institucion {{Auth::user()->nombre_Usuario}}</h1>
     
 </div>
 

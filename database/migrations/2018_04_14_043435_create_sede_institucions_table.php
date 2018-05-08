@@ -32,6 +32,6 @@ class CreateSedeInstitucionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sede__institucions');
+        Schema::drop('sede_institucion');
     }
 }

@@ -34,9 +34,10 @@
   <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
   <script src="js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="js/bootstrap.min.js"></script>
-
+  <script src="js/sweetalert.min.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
+ <!-- Incluya esto después del archivo de alerta dulce js -->
+ @include('sweet::alert')
 </body>
 </html>

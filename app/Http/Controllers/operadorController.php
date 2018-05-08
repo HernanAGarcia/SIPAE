@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 class operadorController extends Controller
 {
-    public function incio(){
-        return view('secretaria.perfilSecretaria');
+    /**
+     * 
+     */
+    public function inicio(){
+        return view('operador.perfilOperador');
     }
 }
