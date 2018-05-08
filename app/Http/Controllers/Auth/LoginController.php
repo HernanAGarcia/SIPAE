@@ -3,7 +3,7 @@
 namespace SIPAE\Http\Controllers\Auth;
 
 use SIPAE\Http\Controllers\Controller;
-
+use Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,6 +53,8 @@ class LoginController extends Controller
         
          }
          else{
+
+            alert()->error('Correo y/o Cotraseña Invalidas', 'Error')->persistent('Close');
             return $request->expectsJson()
                      ? response()->json(['message' => $exception->getMessage()], 401)
                      : redirect()->guest(Route('inicio'));

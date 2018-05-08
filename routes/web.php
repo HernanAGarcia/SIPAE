@@ -103,8 +103,6 @@ Route::get('/institucion/cargaInfoAlimentos',[
   'as'=> 'institucion.cargarInfoAlimentos'
   ])->middleware('institucion');
 
-
-
 Route::get('/institucion/cargarInfoAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');
 
 

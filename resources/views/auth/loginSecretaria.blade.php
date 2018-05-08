@@ -3,7 +3,8 @@
 @section('css')
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link href="css/floating-labels.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" charset="UTF-8" href="css/translateelement.css">
+<link rel="stylesheet" charset="UTF-8" href="css/translateelement.css">
+<link rel="stylesheet" href ="css/sweetalert.css" >
 
 @section('content')
 <div class="container">
@@ -40,4 +41,5 @@
 
     <p class="mt-5 mb-3 text-muted text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">© 2017-2018</font></font></p>
   </form>
+  
   @endsection
