@@ -76,8 +76,6 @@ Route::post('/secretaria/regInstitucion',[
 
 Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInforme')->middleware('secretaria');
 
-Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInforme')->middleware('secretaria');
-
 Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaController@descargarAsistencia')->middleware('secretaria');
 
 Route::get('/secretaria/descargarCertificados/{file}', 'SecretariaController@descargar')->middleware('secretaria');
@@ -115,12 +113,15 @@ Route::get('/operador',[
   'as'=>'operador'
 ]);
 
-Route::get('/operador/verCertificado',[
-  'uses'=>'operadorController@viewCertificado',
-  'as'=>'operador.certificado'
+Route::get('/operador/certificados',[
+  'uses'=>'operadorController@certificados',
+  'as'=>'operador.certificados'
 ]);
 
-Route::get('/operador/reportarAnomalias',[
-  'uses'=>'operadorController@viewAnomalias',
+Route::get('/operador/anomalias',[
+  'uses'=>'operadorController@anomalias',
   'as'=>'operador.anomalias'
 ]);
+
+
+Route::get('/operador/descargarCertificados/{file}', 'operadorController@descargar');
