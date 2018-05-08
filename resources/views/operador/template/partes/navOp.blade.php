@@ -11,10 +11,10 @@
         <a class="nav-link" href="{{ Route('operador')}}">Inicio<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Ver Certificado de cobertura</a>
+        <a class="nav-link" href="{{ Route('operador.certificado')}}">Ver Certificado de cobertura</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Informar Anomalia</a>
+        <a class="nav-link" href="{{ Route('operador.anomalias')}}">Informar Anomalia</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ Route('logout')}}">Salir</a>

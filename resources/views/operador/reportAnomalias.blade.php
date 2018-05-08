@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Página para ver los certificados de cobertura</h1>
+    <h1>Página para reportar anomalias con respecto a la entrega de alimentos</h1>
     
 </div>
 

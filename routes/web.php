@@ -114,3 +114,13 @@ Route::get('/operador',[
   'uses'=>'operadorController@inicio',
   'as'=>'operador'
 ]);
+
+Route::get('/operador/verCertificado',[
+  'uses'=>'operadorController@viewCertificado',
+  'as'=>'operador.certificado'
+]);
+
+Route::get('/operador/reportarAnomalias',[
+  'uses'=>'operadorController@viewAnomalias',
+  'as'=>'operador.anomalias'
+]);
