@@ -2,28 +2,25 @@
 
 @section('content')
 <div class="container">
-    <h1>Página de informes de certificación con operador</h1>
-
+    <h1>Aquí se pueden subir los certificados de cobertura con operador</h1><br>
+      </br>
 
     <form action="/secretaria/certificaciones" method="post" enctype="multipart/form-data">
       {{csrf_field()}}
-
-      <p>
-      <h5>Aquí se pueden subir los certificados de cobertura</h5>
-      </p>
-      <input type="file" name="archivo" id="archivo"/><br>
-      <br>
-
-      <input type="submit"/>
+      <div class="row" >
+          <div class="col-md-7">
+            <input type="file" name="archivo" id="archivo"/>
+          </div>
+          <div class="col-md-3">
+            <input type="submit"/>
+          </div>
+      </div>
     </form>
-
-
-
-
 </div>
 
 
-<div class="container">
+<div class="container"><br>
+  </br>
 
   <table class="table table-hover">
    <tr>
@@ -35,7 +32,7 @@
    <tr>
      <td><a value="{{$archivo}}">{{$archivo}}</a></td>
      <td><a class="link" href="/secretaria/verCertificados/{{$archivo}}">Ver</a></td>
-     <td><a class="link" href="/secretaria/descargarCertificados/{{$archivo}}">Descargar</a></td>
+     <td><a class="link" href="/secretaria/descargarCertificados/{{$archivo}}">click para descargar</a></td>
      <!--En href va a la funcion de descargar-->
    </tr>
    @endforeach

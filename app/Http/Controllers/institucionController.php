@@ -26,7 +26,6 @@ class institucionController extends Controller
   //Funciones para las vistas del perfil de institucion
 
   public function viewInicioInstitucion(){
-
     return view('institucion.perfilInstitucion');
   }
 
@@ -34,28 +33,22 @@ class institucionController extends Controller
     return view('institucion.cargaListadoAsistencia');
   }
 
+  public function viewInstitucionBeneficiarios(){
+    $listados = Storage::disk('informeBeneficiarios')->files();
+    return view('institucion.listaBeneficiarios')->with('listados',$listados);
+  }
+
   public function viewInstitucionAlimentos(){
-    //obtener nombres de los archivos en carpeta informeAlimentos
     $archivos = Storage::disk('informeAlimentos')->files();
     return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
   //Metodo para subir el informe de alimentos registrado en cada colegio
-  public function subirArchivo(Request $request){
+  public function subirInformeAlimentos(Request $request){
     $file=$request->file('archivo');
     $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
-
     Storage::disk('informeAlimentos')->put($nombre,\File::get($file));
-
-    //para insertar en la base de datos
-    $informe = new informe_Alimentos;
-
-    $informe->nombrearchivo = $nombre;
-    $informe->ruta="aqui va la ruta del servidor";
-    $informe->fecha=Carbon::now()->toDateString();
-    $informe->id_Sede_Institucion='1';
-    $informe->save();
-
+    
     $archivos = Storage::disk('informeAlimentos')->files();
     return \View('institucion.archAlimentos')->with('archivos',$archivos);
 
@@ -63,8 +56,6 @@ class institucionController extends Controller
 
   //Metodo para obtener y listar los archivos
   public function listarArchivos(Request $request){
-
-    //obtener nombres de los archivos en carpeta informeAlimentos
      $archivos = Storage::disk('informeAlimentos')->files();
      return \View('institucion.archAlimentos')->with('archivos',$archivos);
   }
@@ -73,4 +64,11 @@ class institucionController extends Controller
     $pathtoFile = public_path().'\\informeAlimentos\\'.$file;
     return response()->download($pathtoFile);
   }
-}
+
+
+    public function descargarBeneficiarios($file){
+      $pathtoFile = public_path().'\\informeBeneficiarios\\'.$file;
+      return response()->download($pathtoFile);
+    }
+
+}//fin de controlador

@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
   <h1>Informes de entrega de alimentos</h1><br>
+  </br>
 
   <div class="row" >
 
@@ -25,10 +26,11 @@
 
   <div>
 
-   <table class="table table-hover" id="tabla">
+   <table class="table table-hover" id="tabla"><br>
+   </br>
     <tr>
       <th>Nombre</th>
-      <th>Opciones</th>
+      <th colspan="2">Opciones</th>
     </tr>
 
 

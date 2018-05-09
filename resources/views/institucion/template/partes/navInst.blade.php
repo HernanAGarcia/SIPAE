@@ -14,10 +14,10 @@
         <a class="nav-link" href="{{ Route('institucion.cargarAsistencia')}}">Cargar listados de Asistencia</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="">Listado de Beneficiados</a>
+        <a class="nav-link" href="{{ Route('institucion.beneficiarios')}}">Listado de Beneficiarios</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ Route('institucion.cargarInfoAlimentos')}}">Informes Alimentarios</a>
+        <a class="nav-link" href="{{ Route('institucion.cargarInfomeAlimentos')}}">Informes Alimentarios</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ Route('logout')}}">Salir</a>

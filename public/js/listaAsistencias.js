@@ -28,9 +28,11 @@ $('#tabla tr:not(:first-child)').slice(0).remove();
 
   for (var i = 0; i < data.length; i++){
 
-  $('#tabla > tbody:last-child').append('<tr><td>'+'<a value="">'+data[i]+'</a>'+
-  '</td><td>'+'<a class="link" href="/secretaria/alimentos/'+data[i]+'">Descargar</a>'+'</td></tr>');
+  $('#tabla > tbody:last-child').append('<tr>'+'<td><a value="">'+data[i]+'</a></td>'+
+  '<td><a class="link" href="/secretaria/verReportesInstitucion/'+data[i]+'" target="_blank">click para ver</a></td>'+
+  '<td><a class="link" href="/secretaria/asistencias/'+data[i]+'">click para descargar</a></td>'+'</tr>');
   }
+
 
 })});
 
@@ -43,8 +45,9 @@ $('#tabla tr:not(:first-child)').slice(0).remove();
 
   for (var i = 0; i < data.length; i++){
 
-  $('#tabla > tbody:last-child').append('<tr><td>'+'<a value="">'+data[i]+'</a>'+
-  '</td><td>'+'<a class="link" href="/secretaria/asistencias/'+data[i]+'">Descargar</a>'+'</td></tr>');
+  $('#tabla > tbody:last-child').append('<tr>'+'<td><a value="">'+data[i]+'</a></td>'+
+  '<td><a class="link" href="/secretaria/verReportesInstitucion/'+data[i]+'" target="_blank">click para ver</a></td>'+
+  '<td><a class="link" href="/secretaria/asistencias/'+data[i]+'">click para descargar</a></td>'+'</tr>');
   }
 
 })});
