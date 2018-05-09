@@ -1,37 +1,13 @@
-sudo: required
 language: php
-dist: trusty 
 
 php:
-  - 7.1
-
-services:
-  # DB MYSQL
-  - mysql
-
-addons:
-  chrome: beta 
-
-install:
-  # Composer
-  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - 5.6
 
 before_script:
-  # DB
-  - mysql -c 'create database sipaedb;' -U root
-
-  # 
-  TravisCI
   - cp .env.travis .env
-
-  # Laravel APP_KEY
-  - php artisan key:generate
+  - mysql -e 'create database homestead_test;'
+  - composer self-update
+  - composer install --no-interaction
 
 script:
-  - chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - php artisan serve &
-  - php artisan dusk
-
-  - php artisan migrate --seed
-  - ./vendor/bin/phpunit --coverage-clover clover.xml
-
+  - vendor/bin/phpunit
