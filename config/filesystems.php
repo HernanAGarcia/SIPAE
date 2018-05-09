@@ -58,6 +58,11 @@ return [
             'root' => public_path('informeCobertura'),
         ],
 
+        'informeBeneficiarios' => [
+            'driver' => 'local',
+            'root' => public_path('informeBeneficiarios'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

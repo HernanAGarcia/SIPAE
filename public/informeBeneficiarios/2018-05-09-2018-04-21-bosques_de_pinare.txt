@@ -1,0 +1,19 @@
+#archivo de prueba
+#documento|institucion|nombre|apellido|titular|asistencia
+10001000;2;camilo andres;gonzales marin;true;true
+10001001;2;carlos mario;ramirez sanchez;true;true
+10001002;2;julia ;echeverry lopez;true;false
+10001003;2;luis felipe;marin barrios;true;true
+10001004;2;juan jose;barrios gonzales;false;true
+10001010;2;luis felipe;marin barrios;true;true
+10001005;2;juan jose;barrios gonzales;false;true
+10001006;2;juan jose;barrios gonzales;false;true
+10001007;2;juan jose;barrios gonzales;false;true
+10001008;2;juan jose;barrios gonzales;false;true
+10001009;2;juan jose;barrios gonzales;false;true
+10001011;2;camilo andres;gonzales marin;true;true
+10001012;2;carlos mario;ramirez sanchez;true;true
+10001013;2;julia ;echeverry lopez;true;false
+10001014;2;camilo andres;gonzales marin;true;true
+10001015;2;carlos mario;ramirez sanchez;true;true
+10001016;2;julia ;echeverry lopez;true;false

@@ -43,7 +43,8 @@ class SecretariaController extends Controller
    *
    */
   public function viewSecretariaListadosPAE(){
-    return view('secretaria.cargarListados');
+    $listados = Storage::disk('informeBeneficiarios')->files();
+    return view('secretaria.listadoBeneficiarios')->with('listados',$listados);
   }
 
   /**
@@ -72,17 +73,15 @@ class SecretariaController extends Controller
   /**
    *
    */
-  public function descargarInforme($file, $file2, $file3){
+  public function descargarInformes($file, $file2, $file3){
     $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
     return response()->download($pathtoFile);
   }
-
 
   /**
    *
    */
   public function viewSecretariaAsistencias(){
-    //$archivos = Storage::disk('informeAlimentos')->files();
     $listaInstitucion = sede_institucion::listar()->get();
    return view('secretaria.informeAsistencias',compact('listaInstitucion','archivos'));
   }
@@ -93,14 +92,6 @@ class SecretariaController extends Controller
   public function getAsistencias($id){
     $archivos = File::files('informeAsistencias\\'.$id);
     return response()->json($archivos);
-  }
-
-  /**
-   *
-   */
-  public function descargarAsistencia($file, $file2, $file3){
-    $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
-    return response()->download($pathtoFile);
   }
 
   /**
@@ -194,12 +185,38 @@ class SecretariaController extends Controller
     return response()->download($pathtoFile);
   }
 
+  public function descargarListados($file){
+    $pathtoFile = public_path().'\\informeBeneficiarios\\'.$file;
+    return response()->download($pathtoFile);
+  }
+
 
   public function verCertificado($file){
     $pathtoFile = public_path().'\\informeCobertura\\'.$file;
     return response()->file($pathtoFile);
   }
 
+  public function verReportes($file, $file2, $file3){
+    $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
+    return response()->file($pathtoFile);
+  }
+
+
+  public function subirListado(Request $request){
+    $file=$request->file('archivo');
+    $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
+
+    Storage::disk('informeBeneficiarios')->put($nombre,\File::get($file));
+
+    //para insertar en la base de datos
+
+    //  $archivos = Storage::disk('informeAlimentos')->files();
+    //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
+
+    $listados = Storage::disk('informeBeneficiarios')->files();
+    return \View('secretaria.listadoBeneficiarios')->with('listados',$listados);
+
+  }
 
 
 }//fin del controller
