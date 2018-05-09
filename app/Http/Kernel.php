@@ -56,5 +56,6 @@ class Kernel extends HttpKernel
         'institucion' => \SIPAE\Http\Middleware\institucionMiddleware::class,
         'secretaria' => \SIPAE\Http\Middleware\secretariaMiddleware::class,
         'sweetalert' => \UxWeb\SweetAlert\ConvertMessagesIntoSweetAlert::class,
+        'operador' => \SIPAE\Http\Middleware\operadorMiddleware::class,
     ];
 }
