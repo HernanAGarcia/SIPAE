@@ -11,3 +11,12 @@ before_script:
 
 script:
   - vendor/bin/phpunit
+
+deploy:
+  - provider: codedeploy
+  access_key_id: AKIAI4N7TMXPPPCR2ZVA
+  secret_access_key: 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
+  bucket: "S3 Bucket"
+  key: latest/sipaeapp.zip
+  application: sipaeapp
+  region: us-east-2
