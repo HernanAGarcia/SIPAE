@@ -1,12 +1,12 @@
-Welcome to the AWS CodeStar sample web application
-==================================================
+Welcome to the AWS CodeStar sample web application SIPAE
+========================================================
 
 This sample code helps get you started with a simple PHP Laravel web
 application deployed by AWS Elastic Beanstalk.
 
 What's Here
 -----------
-
+...
 This sample includes:
 
 * README.md - this file
@@ -71,3 +71,5 @@ AWS recommends you review the security best practices recommended by the framewo
 author of your selected sample application before running it in production. You
 should also regularly review and apply any available patches or associated security
 advisories for dependencies used within your application.
+
+inicio
