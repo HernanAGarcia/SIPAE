@@ -17,6 +17,9 @@
         <a class="nav-link" href="{{ Route('operador.anomalias')}}">Informar Anomalia</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{{ Route('operador.modificarDatos')}}">Modificar Datos</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ Route('logout')}}">Salir</a>
       </li>
     </ul>

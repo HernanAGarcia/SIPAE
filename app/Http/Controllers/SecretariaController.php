@@ -166,6 +166,22 @@ class SecretariaController extends Controller
 
   }
 
+  /**
+   * 
+   */
+public function actualizarDatos(Request $request){
+  $nuevoPass= $request->get('nuevosPassword');
+  if(strlen($nuevoPass)<6){
+    alert()->error('La contraseña debe tener como minimo 6 caracteres', 'Error')->persistent('Close');
+    return redirect()->back();
+  }else{
+     DB::table('users')
+         ->where('id', Auth::user()->id)
+         ->update(['password' => bcrypt($nuevoPass)]);
+         alert()->success('La contraseña se ha cambiado', 'Exito')->persistent('Close');
+          return redirect()->back();
+  }
+}
 
 
 

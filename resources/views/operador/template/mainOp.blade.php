@@ -16,6 +16,7 @@
   <!--Estilos-->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/navbar.css')}}" >
+  <link rel="stylesheet" href ="{{asset('css/sweetalert.css')}}" >
 
   <!-- Scripts -->
   <script>
@@ -47,6 +48,10 @@
 <script src="{{ asset('js/jquery-3.2.1.slim.min.js')}}"></script>
 <script src="{{ asset('js/popper.js')}}"></script>
   <script src="{{ asset('js/jquery.js')}}"></script>
+  <script src="{{ asset('js/sweetalert.min.js')}}"></script>
+
+
+  @include('sweet::alert')
 
 </body>
 </html>

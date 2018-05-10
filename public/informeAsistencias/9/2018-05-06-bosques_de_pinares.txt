@@ -1,7 +1,0 @@
-#archivo de prueba
-#documento|institucion|nombre|apellido|titular|asistencia
-123456789;2;camilo andres;gonzales marin;true;true
-123123123;2;carlos mario;ramirez sanchez;true;true
-121212121;2;julia ;echeverry lopez;true;false
-987654321;2;luis felipe;marin barrios;true;true
-321321321;2;juan jose;barrios gonzales;false;true

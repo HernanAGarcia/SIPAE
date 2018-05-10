@@ -18,7 +18,7 @@ class CreateSedeInstitucionsTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('rector');
-            $table->integer('codigo');
+            $table->string('codigo')->unique();
             $table->integer('nit')->unique();
             $table->string('email');
             $table->string('direccion');
