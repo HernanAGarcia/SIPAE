@@ -26,14 +26,25 @@
   </script>
 </head>
 <body>
-  <div class="container">
-
-    <h1>SIPAE</h1>
-
-    <h5 class="text-right"> <small>Ministerio de Educación Nacional</small></h5><br>
-    <h5 class="text-right"> <small>Secretaría de Educación Armenia, Quindío</small></h5>
-
-    @include('institucion.template.partes.navInst')
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-2">
+      Logo
+      </div>
+      <div class="col-3">
+        <h1 aling="center">SIPAE</h1>
+        <h5 > <small>Ministerio de Educación Nacional</small></h5>
+        <h5 > <small>Secretaría de Educación Armenia, Quindío</small></h5>
+      </div>
+      <div class="col-sm">
+      <img src="img/logo_secretaria.png">
+      </div>
+      <div class="col-sm">
+        @include('institucion.template.partes.navInst')
+      </div>
+      
+    
+    </div>
   </div>
   @yield('content')
 
