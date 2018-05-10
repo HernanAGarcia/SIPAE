@@ -64,6 +64,11 @@ Route::post('/secretaria/regInstitucion',[
   'as'=> 'registrarInstitucion'
 ])->middleware('secretaria');
 
+Route::post('/secretaria/actualizarDatos',[
+  'uses'=>'secretariaController@actualizarDatos',
+  'as'=> 'secretaria.actualizarDatos'
+])->middleware('secretaria');
+
 Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInformes')->middleware('secretaria');
 Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaController@descargarInformes')->middleware('secretaria');
 Route::get('/secretaria/descargarCertificados/{file}', 'SecretariaController@descargar')->middleware('secretaria');
@@ -97,10 +102,20 @@ Route::get('/institucion/cargarInfomeAlimentos',[
     'as'=> 'institucion.beneficiarios'
     ])->middleware('institucion');
 
+    Route::get('/institucion/modificarDatos',[
+      'uses'=>'institucionController@viewModificarDatos',
+      'as'=> 'institucion.viewModificarDatosInst'
+      ])->middleware('institucion');
 
 Route::post('/institucion/cargarInfomeAlimentos', 'institucionController@subirInformeAlimentos')->middleware('institucion');
 Route::get('/institucion/descargarAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');
 Route::get('/institucion/descargarListados/{file}', 'institucionController@descargarBeneficiarios')->middleware('institucion');
+
+Route::post('/institucion/actualizarDatos',[
+  'uses'=>'institucionController@actualizarDatos',
+  'as'=> 'institucion.actualizarDatosInst'
+  ])->middleware('institucion');
+
 
 
 //Auth::routes();
@@ -122,5 +137,14 @@ Route::get('/operador/anomalias',[
   'as'=>'operador.anomalias'
 ]);
 
+Route::get('/operador/ModificarDatos',[
+  'uses'=>'operadorController@viewModificarDatos',
+  'as'=>'operador.modificarDatos'
+]);
 
 Route::get('/operador/descargarCertificados/{file}', 'operadorController@descargar');
+
+Route::post('/operador/actualizarDatos',[
+  'uses'=>'operadorController@actualizarDatos',
+  'as'=> 'operador.actualizarDatosOp'
+  ])->middleware('operador');

@@ -55,11 +55,11 @@ class LoginController extends Controller
          else{
 
             alert()->error('Correo y/o Cotraseña Invalidas', 'Error')->persistent('Close');
-            return $request->expectsJson()
-                     ? response()->json(['message' => $exception->getMessage()], 401)
-                     : redirect()->guest(Route('inicio'));
+            return redirect()->guest(Route('inicio'));
          }
     }
+
+    
 
     public function showLoginForm()
     {
