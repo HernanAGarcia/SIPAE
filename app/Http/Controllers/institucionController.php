@@ -6,12 +6,13 @@ use SIPAE\informe_Alimentos;
 use SIPAE\Sede_Institucion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use League\Flysystem\Filesystem;
 use Carbon\Carbon;
 use Input;
 use File;
 use DB;
-use Illuminate\Support\Facades\Auth;
+
 
 class institucionController extends Controller
 {
@@ -38,7 +39,9 @@ class institucionController extends Controller
    * 
    */
   public function viewInstitucionAsistencias(){
-    return view('institucion.cargaListadoAsistencia');
+    $id= Auth::user()->Id_Sede_Institucion;
+    $asistencias = File::files('informeAsistencias\\'.$id);
+    return \View('institucion.cargaListadoAsistencia')->with('asistencias',$asistencias);
   }
 
   /**
@@ -53,21 +56,27 @@ class institucionController extends Controller
    * 
    */
   public function viewInstitucionAlimentos(){
-    $archivos = Storage::disk('informeAlimentos')->files();
+    $id= Auth::user()->Id_Sede_Institucion;
+    $archivos = File::files('informeAlimentos\\'.$id);
     return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
-  /**
-   * 
-   */
-  public function subirInformeAlimentos(Request $request){
+  //Metodo para subir el informe de alimentos registrado en cada colegio
+  public function subirInformeAlimentos(Request $request, $id){
     $file=$request->file('archivo');
-    $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
-    Storage::disk('informeAlimentos')->put($nombre,\File::get($file));
-    
-    $archivos = Storage::disk('informeAlimentos')->files();
+    $nombre ="informeAlimentos\\".$id."\\".Carbon::now()->toDateString()."-".$file->getClientOriginalName();
+    File::put($nombre,\File::get($file));
+    $archivos = File::files('informeAlimentos\\'.$id);
     return \View('institucion.archAlimentos')->with('archivos',$archivos);
+  }
 
+
+  public function subirInformeAsistencia(Request $request, $id){
+    $file=$request->file('archivo');
+    $nombre ="informeAsistencias\\".$id."\\".Carbon::now()->toDateString()."-".$file->getClientOriginalName();
+    File::put($nombre,\File::get($file));
+    $asistencias = File::files('informeAsistencias\\'.$id);
+    return \View('institucion.cargaListadoAsistencia')->with('asistencias',$asistencias);
   }
 
   /**
@@ -78,12 +87,9 @@ class institucionController extends Controller
      return \View('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
-  /**
-   * 
-   */
-  public function descargar($file){
-    $pathtoFile = public_path().'\\informeAlimentos\\'.$file;
-    return response()->download($pathtoFile);
+  public function descargar($file, $file2, $file3){
+      $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
+      return response()->download($pathtoFile);
   }
 
     /**

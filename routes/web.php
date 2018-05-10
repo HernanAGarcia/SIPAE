@@ -107,16 +107,11 @@ Route::get('/institucion/cargarInfomeAlimentos',[
       'as'=> 'institucion.viewModificarDatosInst'
       ])->middleware('institucion');
 
-Route::post('/institucion/cargarInfomeAlimentos', 'institucionController@subirInformeAlimentos')->middleware('institucion');
-Route::get('/institucion/descargarAlimentos/{file}', 'institucionController@descargar')->middleware('institucion');
+Route::post('/institucion/cargarInfomeAlimentos/{file}', 'institucionController@subirInformeAlimentos')->middleware('institucion');
+Route::post('/institucion/cargarInfomeAsistencias/{file}', 'institucionController@subirInformeAsistencia')->middleware('institucion');
+Route::get('/institucion/descargarAlimentos/{file}/{file2}/{file3}', 'institucionController@descargar')->middleware('institucion');
 Route::get('/institucion/descargarListados/{file}', 'institucionController@descargarBeneficiarios')->middleware('institucion');
-
-Route::post('/institucion/actualizarDatos',[
-  'uses'=>'institucionController@actualizarDatos',
-  'as'=> 'institucion.actualizarDatosInst'
-  ])->middleware('institucion');
-
-
+Route::get('/institucion/descargarAsistencias/{file}/{file2}/{file3}', 'institucionController@descargar')->middleware('institucion');
 
 //Auth::routes();
 //Route::get('/institucion/descargar','institucionController@descargar');
