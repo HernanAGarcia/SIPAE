@@ -29,7 +29,7 @@
 <div class="container-fluid">
     <div class="row">
       <div class="col-2">
-      Logo
+      Loguito
       </div>
       <div class="col-3">
         <h1 aling="center">SIPAE</h1>
