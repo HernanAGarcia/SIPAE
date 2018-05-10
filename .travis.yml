@@ -12,19 +12,3 @@ before_script:
 
 script:
   - vendor/bin/phpunit
-
-before_deploy: "echo 'ready?'"
-
-deploy:
-  - provider: elasticbeanstalk
-  access_key_id: AKIAI4N7TMXPPPCR2ZVA
-  secret_access_key:
-    secure: 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
-  bucket: "S3 Bucket"
-  app: sipaeapp
-  env: sipaeapp
-  region: us-east-2
-  
-  after_deploy:
-  - ./after_deploy_1.sh
-  - ./after_deploy_2.sh
