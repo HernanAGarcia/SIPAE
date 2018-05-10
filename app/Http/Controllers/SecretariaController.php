@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Alert;
 use Input;
+use Log;
 
 class SecretariaController extends Controller
 {
@@ -117,6 +118,7 @@ class SecretariaController extends Controller
 
     $nombreInstitucion= $request->get('nombreInstitucion');
     $nit= $request->get('NIT');
+    $codigo= $request->get('NIT');
     $rector= $request->get('rector');;
     $direccion= $request->get('direccion');;
     $telefono= $request->get('telefono');;
@@ -134,14 +136,19 @@ class SecretariaController extends Controller
 
         //ingresar a la tabla de instituciones
          $idInstitucion=DB::table('sede_institucion')->insertGetId(['nombre'=>$nombreInstitucion,'rector'=>$rector,
-         'codigo'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
+         'codigo'=>$codigo,'nit'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
          'telefono'=>$telefono]);
-
+         // se crean los directorios donde se almacenara los reportes de cada institucion
+          File::makeDirectory('informeAsistencias\\'.$idInstitucion);
+          File::makeDirectory('informeAlimentos\\'.$idInstitucion);
 
            //ingresar en la tabla de usuarios para el inicio de sesion
            DB::table('users')->insert(['nombre_Usuario'=>$nombreInstitucion,'email'=>$correoElectronico,
            'password'=>Hash::make($password),'role'=>'institucion','Id_Sede_Institucion'=>$idInstitucion,'Id_Secretaria'=>$idSecretaria]);
            alert()->success('Registro completo', 'Aceptado')->persistent('Close');
+
+          // Storage::MakeDirectory(public_path('my_new_directory'));
+
            return redirect()->back();
       }
 

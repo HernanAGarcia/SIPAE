@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 class CreateSedeInstitucionsTable extends Migration
 {
@@ -17,12 +18,14 @@ class CreateSedeInstitucionsTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('rector');
-            $table->integer('codigo')->unique();
+            $table->integer('codigo');
+            $table->integer('nit')->unique();
             $table->string('email');
             $table->string('direccion');
             $table->string('telefono');
             $table->timestamps();
         });
+      
     }
 
     /**
