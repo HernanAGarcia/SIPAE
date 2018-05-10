@@ -6,7 +6,8 @@
     <h1>Aquí se pueden subir los archivos donde se especifica lo que se recibio de recursos
       alimentarios por parte del proveedor</h1><br>
       <br>
-          <form action="/institucion/cargarInfomeAlimentos" method="post" enctype="multipart/form-data">
+
+          <form action="/institucion/cargarInfomeAlimentos/{{Auth::user()->	Id_Sede_Institucion}}" method="post" enctype="multipart/form-data">
                   {{csrf_field()}}
                 <div class="row" >
                     <div class="col-md-7">
