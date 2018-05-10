@@ -6,7 +6,7 @@ application deployed by AWS Elastic Beanstalk.
 
 What's Here
 -----------
-
+...
 This sample includes:
 
 * README.md - this file
