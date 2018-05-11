@@ -19,12 +19,12 @@ class UserTableSeeder extends Seeder
         //]);
 
 
-        DB::table('users')->insert([
-            'nombre_Usuario' => 'Secretaria de Armenia',
-            'email' => 'secretaria@gmail.com',
-            'password' => bcrypt('secret'),
-            'Id_Sede_institucion'=>0,
-            'Id_Secretaria'=>1,
-        ]);
+        // DB::table('users')->insert([
+        //     'nombre_Usuario' => 'Secretaria de Armenia',
+        //     'email' => 'secretaria@gmail.com',
+        //     'password' => bcrypt('secret'),
+        //     'Id_Sede_institucion'=>0,
+        //     'Id_Secretaria'=>1,
+        // ]);
     }
 }
