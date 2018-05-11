@@ -31,7 +31,7 @@
     
 
     <h1>SIPAE</h1>
-    <img aling="right" src="img/logo_secretaria.png">
+    <img align="right" src="img/logo_secretaria.png">
     
 
     @include('institucion.template.partes.navInst')
