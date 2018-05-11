@@ -12,19 +12,19 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('secretaria')->insert([
-            'id'=>'2',
-            'nombre' => 'Secretaria de Armenia',
+        //DB::table('secretaria')->insert([
+          //  'id'=>'2',
+            //'nombre' => 'Secretaria de Armenia',
             
-        ]);
-
-
-        //DB::table('users')->insert([
-          //  'nombre_Usuario' => 'Secretaria de Armenia',
-            //'email' => 'secretaria@gmail.com',
-            //'password' => bcrypt('secret'),
-            //'Id_Sede_institucion'=>'0',
-            //'Id_Secretaria'=>'1',
         //]);
+
+
+        DB::table('users')->insert([
+            'nombre_Usuario' => 'Secretaria de Armenia',
+            'email' => 'secretaria@gmail.com',
+            'password' => bcrypt('secret'),
+            'Id_Sede_institucion'=>'0',
+            'Id_Secretaria'=>'1',
+        ]);
     }
 }
