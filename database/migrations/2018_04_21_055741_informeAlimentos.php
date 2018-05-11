@@ -19,7 +19,7 @@ class InformeAlimentos extends Migration
             $table->string('ruta');
             $table->Date('fecha');
             $table->integer('Id_Sede_Institucion')->unsigned();
-            $table->foreign('Id_Sede_Institucion')->references('id')->on('Sede_Institucion');
+            $table->foreign('Id_Sede_Institucion')->references('id')->on('sede_institucion');
             $table->timestamps();
         });
     }
