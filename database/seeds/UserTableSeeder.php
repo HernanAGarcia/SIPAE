@@ -35,11 +35,20 @@ class UserTableSeeder extends Seeder
         //      'Id_Secretaria'=>'1',
         //  ]);
 
-        DB::table('users')->insert([
-            'nombre_Usuario' => 'Instituto Montenegro',
-            'email' => 'montenegro@gmail.com',
+        //DB::table('users')->insert([
+        //    'nombre_Usuario' => 'Instituto Montenegro',
+        //    'email' => 'montenegro@gmail.com',
+        //    'password' => bcrypt('secret'),
+        //    'role'=>'institucion',
+        //   'Id_Sede_Institucion'=>'1',
+        //    'Id_Secretaria'=>'1',
+        //]);
+        
+         DB::table('users')->insert([
+            'nombre_Usuario' => 'Operador',
+            'email' => 'operador@gmail.com',
             'password' => bcrypt('secret'),
-            'role'=>'institucion',
+            'role'=>'operador',
             'Id_Sede_Institucion'=>'1',
             'Id_Secretaria'=>'1',
         ]);
