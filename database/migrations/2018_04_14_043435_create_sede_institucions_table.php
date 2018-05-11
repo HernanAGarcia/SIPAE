@@ -14,7 +14,7 @@ class CreateSedeInstitucionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('Sede_Institucion', function (Blueprint $table) {
+        Schema::create('sede_institucion', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->string('rector');
