@@ -20,4 +20,4 @@ deploy:
   strategy: git
   run:
     - "php artisan migrate"
-    
+    - "php artisan serve"
