@@ -12,9 +12,9 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        //DB::table('secretaria')->insert([
-          //  'nombre' => 'Secretaria de Armenia',
-        //]);
+        DB::table('secretaria')->insert([
+            'nombre' => 'Secretaria de Armenia',
+        ]);
 
         DB::table('sede_institucion')->insert([
             'nombre' => 'Instituto Montenegro',
