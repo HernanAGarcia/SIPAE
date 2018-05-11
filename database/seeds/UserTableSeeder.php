@@ -12,14 +12,15 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('secretaria')->insert([
-            'nombre' => 'Secretaria de Armenia',
-        ]);
+        //DB::table('secretaria')->insert([
+          //  'nombre' => 'Secretaria de Armenia',
+        //]);
 
         DB::table('sede_institucion')->insert([
             'nombre' => 'Instituto Montenegro',
             'rector' => 'JOSE URIEL GONZALEZ RAMIREZ',
             'codigo' => '163470000291',
+            'nit'=> '163470000291',
             'email' => 'insmontenegro@hotmail.com',
             'direccion' =>'Carrera 5 #11-07 - Montenegro',
             'telefono'=>'7535600'
