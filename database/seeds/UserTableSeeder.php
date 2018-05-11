@@ -30,8 +30,8 @@ class UserTableSeeder extends Seeder
              'email' => 'secretaria@gmail.com',
              'password' => bcrypt('secret'),
              'role'=>'secretaria',
-             'Id_Sede_Institucion'=>1,
-             'Id_Secretaria'=>1,
+             'Id_Sede_Institucion'=>'1',
+             'Id_Secretaria'=>'1',
          ]);
     }
 }
