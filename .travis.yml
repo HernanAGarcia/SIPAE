@@ -17,3 +17,4 @@ deploy:
   api_key:
     secure: ef4158d4-af6a-4831-9e1b-12233f3f6b60
   app: sipae
+  strategy: git
