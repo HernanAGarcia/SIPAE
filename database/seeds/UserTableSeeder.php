@@ -21,7 +21,6 @@ class UserTableSeeder extends Seeder
              'nombre_Usuario' => 'Secretaria de Armenia',
              'email' => 'secretaria@gmail.com',
              'password' => bcrypt('secret'),
-             'Id_Sede_Institucion'=>0,
              'Id_Secretaria'=>1,
          ]);
     }
