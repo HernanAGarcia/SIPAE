@@ -13,6 +13,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('secretaria')->insert([
+            'id'=>'2',
             'nombre' => 'Secretaria de Armenia',
             
         ]);
