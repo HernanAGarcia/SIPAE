@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SecretariaTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,7 +22,8 @@ class SecretariaTableSeeder extends Seeder
             'nombre_Usuario' => 'Secretaria de Armenia',
             'email' => 'secretaria@gmail.com',
             'password' => bcrypt('secret'),
-            
+            'Id_Sede_institucion'=>'0',
+            'Id_Secretaria'=>'1',
         ]);
     }
 }
