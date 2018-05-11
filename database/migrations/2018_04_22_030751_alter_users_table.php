@@ -15,9 +15,9 @@ class AlterUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
           $table->integer('Id_Sede_Institucion')->unsigned();
-          $table->foreign('Id_Sede_Institucion')->references('id')->on('Sede_Institucion');
+          $table->foreign('Id_Sede_Institucion')->references('id')->on('sede_institucion');
           $table->integer('Id_Secretaria')->unsigned();
-          $table->foreign('Id_Secretaria')->references('id')->on('Secretaria');
+          $table->foreign('Id_Secretaria')->references('id')->on('secretaria');
 
         });
     }
