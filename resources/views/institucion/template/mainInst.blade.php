@@ -32,8 +32,7 @@
 
     <h1>SIPAE</h1>
     <img aling="right" src="img/logo_secretaria.png">
-    <h5 class="text-right"> <small>Ministerio de Educación Nacional</small></h5><br>
-    <h5 class="text-right"> <small>Secretaría de Educación Armenia, Quindío</small></h5>
+    
 
     @include('institucion.template.partes.navInst')
   </div>
