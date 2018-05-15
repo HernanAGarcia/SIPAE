@@ -60,12 +60,12 @@ Route::get('/Secretaria/modificarDatos', [
 ])->middleware('secretaria');
 
 Route::post('/secretaria/regInstitucion',[
-  'uses'=>'secretariaController@registrarInstitucion',
+  'uses'=>'SecretariaController@registrarInstitucion',
   'as'=> 'registrarInstitucion'
 ])->middleware('secretaria');
 
 Route::post('/secretaria/actualizarDatos',[
-  'uses'=>'secretariaController@actualizarDatos',
+  'uses'=>'SecretariaController@actualizarDatos',
   'as'=> 'secretaria.actualizarDatos'
 ])->middleware('secretaria');
 
