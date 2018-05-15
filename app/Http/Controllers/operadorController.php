@@ -34,7 +34,7 @@ class operadorController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function certificados(){
 
@@ -44,7 +44,7 @@ class operadorController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function anomalias(){
       return view('operador.reporteAnomalias');
@@ -53,22 +53,22 @@ class operadorController extends Controller
 
 
     /**
-     * 
+     *
      */
     public function descargar($file){
-      $pathtoFile = public_path().'\\informeCobertura\\'.$file;
+      $pathtoFile = public_path().'//informeCobertura//'.$file;
       return response()->download($pathtoFile);
     }
 
     /**
-     * 
+     *
      */
     public function viewModificarDatos(){
       return view('operador.modificarDatosOp');
     }
 
     /**
-     * 
+     *
      */
     public function actualizarDatos(Request $request){
       $nuevoPass= $request->get('nuevosPassword');
