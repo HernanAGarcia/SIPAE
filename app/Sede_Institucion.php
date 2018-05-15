@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class Sede_Institucion extends Model
 {
-    protected $table = 'sede_Institucion';
+    protected $table = 'sede_institucion';
     protected $fillable = ['nombre'];
 
 
     public static function listarSedes($id){
     //  $sedesInst=DB::table('Sede_Institucion')->where('Id_Institucion','=',$id)->get();
-      return Sede_Institucion::where('Id_Institucion','=',$id)->get();
+      return Sede_Institucion::where('id','=',$id)->get();
 
     }
 
@@ -21,7 +21,7 @@ class Sede_Institucion extends Model
     public static function mostrarCodigo($id){
     //  $sedesInst=DB::table('Sede_Institucion')->where('Id_Institucion','=',$id)->get();
       //return Sede_Institucion::where('id','=',$id)->get();
-      $sede = DB::table('Sede_Institucion')
+      $sede = DB::table('sede_institucion')
                      ->select('codigo')
                      ->where('id','=',$id)
                      ->get();
