@@ -97,15 +97,20 @@ Route::get('/institucion/cargarInfomeAlimentos',[
   ])->middleware('institucion');
 
 
-  Route::get('/institucion/beneficiarios',[
-    'uses'=>'institucionController@viewInstitucionBeneficiarios',
-    'as'=> 'institucion.beneficiarios'
-    ])->middleware('institucion');
+Route::get('/institucion/beneficiarios',[
+  'uses'=>'institucionController@viewInstitucionBeneficiarios',
+  'as'=> 'institucion.beneficiarios'
+  ])->middleware('institucion');
 
-    Route::get('/institucion/modificarDatos',[
-      'uses'=>'institucionController@viewModificarDatos',
-      'as'=> 'institucion.viewModificarDatosInst'
-      ])->middleware('institucion');
+Route::get('/institucion/modificarDatos',[
+  'uses'=>'institucionController@viewModificarDatos',
+  'as'=> 'institucion.ModificarDatosInst'
+  ])->middleware('institucion');
+
+Route::post('/institucion/actualizarDatosInst',[
+  'uses'=>'institucionController@actualizarDatos',
+  'as'=> 'institucion.actualizarDatosInst'
+  ])->middleware('institucion');
 
 Route::post('/institucion/cargarInfomeAlimentos/{file}', 'institucionController@subirInformeAlimentos')->middleware('institucion');
 Route::post('/institucion/cargarInfomeAsistencias/{file}', 'institucionController@subirInformeAsistencia')->middleware('institucion');

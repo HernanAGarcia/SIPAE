@@ -8,7 +8,7 @@
     {{ csrf_field() }}
         <div class="form-label-group">
             <label for="input"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nueva Contraseña:</font></font></label>
-            <input type="text" name="nuevosPassword" id="input" class="form-control" placeholder="Nueva Contraseña" required="" autofocus="">
+            <input type="password" name="nuevosPassword" id="input" class="form-control" placeholder="Nueva Contraseña" required="" autofocus="">
         </div>
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit">

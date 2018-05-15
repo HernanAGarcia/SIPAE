@@ -31,7 +31,7 @@
    @foreach($certificados as $archivo)
    <tr>
      <td><a value="{{$archivo}}">{{$archivo}}</a></td>
-     <td><a class="link" href="/secretaria/verCertificados/{{$archivo}}">Ver</a></td>
+     <td><a class="link" href="/secretaria/verCertificados/{{$archivo}}" target="_blank">click para ver</a></td>
      <td><a class="link" href="/secretaria/descargarCertificados/{{$archivo}}">click para descargar</a></td>
      <!--En href va a la funcion de descargar-->
    </tr>
