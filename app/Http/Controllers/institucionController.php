@@ -28,23 +28,23 @@ class institucionController extends Controller
   //Funciones para las vistas del perfil de institucion
 
   /**
-   * 
+   *
    */
   public function viewInicioInstitucion(){
     return view('institucion.perfilInstitucion');
   }
 
   /**
-   * 
+   *
    */
   public function viewInstitucionAsistencias(){
     $id= Auth::user()->Id_Sede_Institucion;
-    $asistencias = File::files('informeAsistencias\\'.$id);
+    $asistencias = File::files('informeAsistencias/'.$id);
     return \View('institucion.cargaListadoAsistencia')->with('asistencias',$asistencias);
   }
 
   /**
-   * 
+   *
    */
   public function viewInstitucionBeneficiarios(){
     $listados = Storage::disk('informeBeneficiarios')->files();
@@ -52,34 +52,34 @@ class institucionController extends Controller
   }
 
   /**
-   * 
+   *
    */
   public function viewInstitucionAlimentos(){
     $id= Auth::user()->Id_Sede_Institucion;
-    $archivos = File::files('informeAlimentos\\'.$id);
+    $archivos = File::files('informeAlimentos/'.$id);
     return view('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
   //Metodo para subir el informe de alimentos registrado en cada colegio
   public function subirInformeAlimentos(Request $request, $id){
     $file=$request->file('archivo');
-    $nombre ="informeAlimentos\\".$id."\\".Carbon::now()->toDateString()."-".$file->getClientOriginalName();
+    $nombre ="informeAlimentos/".$id."/".Carbon::now()->toDateString()."-".$file->getClientOriginalName();
     File::put($nombre,\File::get($file));
-    $archivos = File::files('informeAlimentos\\'.$id);
+    $archivos = File::files('informeAlimentos/'.$id);
     return \View('institucion.archAlimentos')->with('archivos',$archivos);
   }
 
 
   public function subirInformeAsistencia(Request $request, $id){
     $file=$request->file('archivo');
-    $nombre ="informeAsistencias\\".$id."\\".Carbon::now()->toDateString()."-".$file->getClientOriginalName();
+    $nombre ="informeAsistencias/".$id."/".Carbon::now()->toDateString()."-".$file->getClientOriginalName();
     File::put($nombre,\File::get($file));
-    $asistencias = File::files('informeAsistencias\\'.$id);
+    $asistencias = File::files('informeAsistencias/'.$id);
     return \View('institucion.cargaListadoAsistencia')->with('asistencias',$asistencias);
   }
 
   /**
-   * 
+   *
    */
   public function listarArchivos(Request $request){
      $archivos = Storage::disk('informeAlimentos')->files();
@@ -87,24 +87,24 @@ class institucionController extends Controller
   }
 
   public function descargar($file, $file2, $file3){
-      $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
+      $pathtoFile = public_path().'//'.$file.'//'.$file2.'//'.$file3;
       return response()->download($pathtoFile);
   }
 
     /**
-     * 
+     *
      */
     public function descargarBeneficiarios($file){
-      $pathtoFile = public_path().'\\informeBeneficiarios\\'.$file;
+      $pathtoFile = public_path().'//informeBeneficiarios//'.$file;
       return response()->download($pathtoFile);
     }
 
     /**
-     * 
+     *
      */
     public function viewModificarDatos(){
       $resultado = DB::table('sede_institucion')->where('id', '=', Auth::user()->Id_Sede_Institucion)->get();
-      
+
       $institucion=$resultado->first();
 
       $telefono=$institucion->telefono;
@@ -114,7 +114,7 @@ class institucionController extends Controller
     }
 
     /**
-     * 
+     *
      */
     public function actualizarDatos(Request $request){
 
@@ -130,13 +130,13 @@ class institucionController extends Controller
           DB::table('sede_institucion')
               ->where('id', Auth::user()->Id_Sede_Institucion)
               ->update(['rector'=>$rector,'direccion'=>$direccion,'telefono'=>$telefono]);
-       
+
            //insertar la nueva clave
            DB::table('users')
             ->where('id', Auth::user()->id)
             ->update(['password' => bcrypt($nuevoPass)]);
 
-          
+
              alert()->success('Los datos se han modificado', 'Exito')->persistent('Close');
              return redirect()->back();
        }
