@@ -67,7 +67,7 @@ class SecretariaController extends Controller
    *
    */
   public function getFiles($id){
-    $archivos = File::files('informeAlimentos\\'.$id);
+    $archivos = File::files('informeAlimentos/'.$id);
     return response()->json($archivos);
   }
 
@@ -75,7 +75,7 @@ class SecretariaController extends Controller
    *
    */
   public function descargarInformes($file, $file2, $file3){
-    $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
+    $pathtoFile = public_path().'//'.$file.'//'.$file2.'//'.$file3;
     return response()->download($pathtoFile);
   }
 
@@ -91,7 +91,7 @@ class SecretariaController extends Controller
    *
    */
   public function getAsistencias($id){
-    $archivos = File::files('informeAsistencias\\'.$id);
+    $archivos = File::files('informeAsistencias/'.$id);
     return response()->json($archivos);
   }
 
@@ -139,8 +139,8 @@ class SecretariaController extends Controller
          'codigo'=>$codigo,'nit'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
          'telefono'=>$telefono]);
          // se crean los directorios donde se almacenara los reportes de cada institucion
-          File::makeDirectory('informeAsistencias\\'.$idInstitucion);
-          File::makeDirectory('informeAlimentos\\'.$idInstitucion);
+          File::makeDirectory('informeAsistencias//'.$idInstitucion);
+          File::makeDirectory('informeAlimentos//'.$idInstitucion);
 
            //ingresar en la tabla de usuarios para el inicio de sesion
            DB::table('users')->insert(['nombre_Usuario'=>$nombreInstitucion,'email'=>$correoElectronico,
@@ -167,7 +167,7 @@ class SecretariaController extends Controller
   }
 
   /**
-   * 
+   *
    */
 public function actualizarDatos(Request $request){
   $nuevoPass= $request->get('nuevosPassword');
@@ -204,23 +204,23 @@ public function actualizarDatos(Request $request){
 
 
   public function descargar($file){
-    $pathtoFile = public_path().'\\informeCobertura\\'.$file;
+    $pathtoFile = public_path().'//informeCobertura//'.$file;
     return response()->download($pathtoFile);
   }
 
   public function descargarListados($file){
-    $pathtoFile = public_path().'\\informeBeneficiarios\\'.$file;
+    $pathtoFile = public_path().'//informeBeneficiarios//'.$file;
     return response()->download($pathtoFile);
   }
 
 
   public function verCertificado($file){
-    $pathtoFile = public_path().'\\informeCobertura\\'.$file;
+    $pathtoFile = public_path().'//informeCobertura//'.$file;
     return response()->file($pathtoFile);
   }
 
   public function verReportes($file, $file2, $file3){
-    $pathtoFile = public_path().'\\'.$file.'\\'.$file2.'\\'.$file3;
+    $pathtoFile = public_path().'//'.$file.'//'.$file2.'//'.$file3;
     return response()->file($pathtoFile);
   }
 
