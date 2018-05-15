@@ -215,7 +215,7 @@ public function actualizarDatos(Request $request){
 
 
   public function verCertificado($file){
-    $pathtoFile = public_path().'\\informeCobertura\\'.$file;
+    $pathtoFile = public_path().'//informeCobertura//'.$file;
     return response()->file($pathtoFile);
   }
 
