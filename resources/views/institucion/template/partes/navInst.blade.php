@@ -20,7 +20,7 @@
         <a class="nav-link" href="{{ Route('institucion.cargarInfomeAlimentos')}}">Informes Alimentarios</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ Route('institucion.viewModificarDatosInst')}}">Modificar Datos</a>
+        <a class="nav-link" href="{{ Route('institucion.ModificarDatosInst')}}">Modificar Datos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ Route('logout')}}">Salir</a>
