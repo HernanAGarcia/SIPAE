@@ -54,7 +54,7 @@ Route::get('/secretaria/certificaciones', [
   'as' => 'secretaria.infoCertificaciones'
 ])->middleware('secretaria');
 
-Route::get('/Secretaria/modificarDatos', [
+Route::get('/secretaria/modificarDatos', [
   'uses'=> 'SecretariaController@viewSecretariaModificarDatos',
   'as' => 'secretaria.modificarDatos'
 ])->middleware('secretaria');

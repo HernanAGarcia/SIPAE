@@ -20,6 +20,8 @@ class institucionMiddleware
             if(Auth::user()->role!='institucion'){
                 return redirect('/');
             }
+         }else{
+            return redirect('/');
          }
 
          return $next($request);

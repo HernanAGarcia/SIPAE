@@ -20,6 +20,8 @@ class secretariaMiddleware
             if(Auth::user()->role!='secretaria'){
                 return redirect('/');
             }
+         }else{
+            return redirect('/');
          }
 
          return $next($request);
