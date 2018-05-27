@@ -24,7 +24,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/sedes/{id}','SecretariaController@getSedes')->middleware('secretaria');
 
-Route::get('/Secretaria', [
+Route::get('/secretaria', [
   'uses'=> 'SecretariaController@viewSecretaria',
   'as' => 'secretaria'
 ])->middleware('secretaria');
