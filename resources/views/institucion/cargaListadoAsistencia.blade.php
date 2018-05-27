@@ -8,7 +8,7 @@
     <h1>Aquí se pueden subir las listas de asistencia al comedor</h1><br>
       <br>
 
-          <form action="/institucion/cargarInfomeAsistencias/{{Auth::user()->	Id_Sede_Institucion}}" method="post" enctype="multipart/form-data">
+          <form action="/institucion/infomeAsistencias/{{Auth::user()->	Id_Sede_Institucion}}" method="post" enctype="multipart/form-data">
                   {{csrf_field()}}
                 <div class="row" >
                     <div class="col-md-7">

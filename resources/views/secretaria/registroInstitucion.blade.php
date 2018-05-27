@@ -6,7 +6,7 @@
     <h3>Página de Registro de Instituciones</h3>
     <p>
     En esta sección de la página se pueden resgistrar las instituciones que estan focalizadas
-    en el programa de alimentación escolar (PAE). A continuación, se presenta el formulario 
+    en el programa de alimentación escolar (PAE). A continuación, se presenta el formulario
     donde podrá diligenciar los datos de cada una de las instituciones.
     <br>
     Todos los campos son de caracter obligatorios

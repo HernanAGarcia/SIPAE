@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\File;
 use League\Flysystem\Filesystem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use Alert;
-use Input;
 use Log;
+use Validator;
+
 
 class SecretariaController extends Controller
 {
@@ -124,16 +126,39 @@ class SecretariaController extends Controller
     $telefono= $request->get('telefono');;
     $correoElectronico= $request->get('email');;
     $password= $request->get('password');
-
     $idSecretaria= Auth::user()->id;
 
 
-      $verificacion=$this->verificarRegistro($nit,$correoElectronico);
-     if(!$verificacion){
-          alert()->error('El Nit y el Correo de la institucion ya existe', 'Error')->persistent('Close');
-          return redirect()->back();
-      }else{
 
+    $rules = array(
+      'nombreInstitucion' => 'required|string|max:60',
+      'NIT' => 'required|numeric|min:0',
+      'rector' => 'required|string|max:60',
+      'direccion' => 'required|string|max:60',
+      'telefono' => 'required|numeric|digits_between:7,15',
+      'email' => 'required|email|max:60',
+      'password' => 'required|between:6,20'
+    );
+    $messages = [
+    'max' => 'El campo :attribute no debe contener más de :max caracteres.',
+    'min' => 'El campo :attribute solo debe contener números.',
+    'required' => 'El campo :attribute es requerido.',
+    'string'=> 'El campo :attribute puede contener distintos caracteres.',
+    'between' => 'El campo Nueva Contraseña debe contener un número de caracteres entre: :min - :max.',
+    'numeric' => 'El campo :attribute solo debe contener números.',
+    'email' => 'El campo :attribute debe contener una dirección de correo electronico.',
+    'digits_between' => 'El campo :attribute debe tener entre :min - :max números.',
+    ];
+
+    $validator = Validator::make(Input::all(), $rules, $messages );
+    $verificacion=$this->verificarRegistro($nit,$correoElectronico);
+
+      if($validator-> fails()){
+          return redirect('/secretaria/registrarInstituciones')->withErrors($validator);
+      }elseif (!$verificacion) {
+        alert()->error('El Nit o el Correo de la institucion ya existe', 'Error')->persistent('Close');
+        return redirect()->back();
+      }else{
         //ingresar a la tabla de instituciones
          $idInstitucion=DB::table('sede_institucion')->insertGetId(['nombre'=>$nombreInstitucion,'rector'=>$rector,
          'codigo'=>$codigo,'nit'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
@@ -159,7 +184,7 @@ class SecretariaController extends Controller
     $codigo=DB::table('sede_institucion')->where('codigo', $nit)->exists();
     $email= DB::table('sede_institucion')->where('email', $correo)->exists();
 
-    if($codigo=='1' && $email=='1'){
+    if($codigo=='1' || $email=='1'){
       return false;
     }
     return true;
@@ -184,25 +209,6 @@ public function actualizarDatos(Request $request){
 }
 
 
-
-  public function subirArchivo(Request $request){
-    $file=$request->file('archivo');
-    $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
-
-    Storage::disk('informeCobertura')->put($nombre,\File::get($file));
-
-    //para insertar en la base de datos
-
-    //  $archivos = Storage::disk('informeAlimentos')->files();
-    //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
-
-    $certificados = Storage::disk('informeCobertura')->files();
-    return \View('secretaria.informeCertificacion')->with('certificados',$certificados);
-
-  }
-
-
-
   public function descargar($file){
     $pathtoFile = public_path().'//informeCobertura//'.$file;
     return response()->download($pathtoFile);
@@ -225,19 +231,58 @@ public function actualizarDatos(Request $request){
   }
 
 
-  public function subirListado(Request $request){
+
+  public function subirArchivo(Request $request){
+
+    $rules = array('archivo' => 'max:5000|mimes:xlsx,xls');
+    $messages = [
+    'max'    => 'El archivo no debe ser mayor a 5 megabytes',
+    'mimes' => 'El archivo debe ser un archivo de tipo: xlsx,xls',
+  ];
+    $validator = Validator::make(Input::all(), $rules, $messages );
+
+    if($validator-> fails()){
+      return redirect('/secretaria/certificaciones')->withErrors($validator);
+    }else {
     $file=$request->file('archivo');
     $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
-
-    Storage::disk('informeBeneficiarios')->put($nombre,\File::get($file));
-
+    Storage::disk('informeCobertura')->put($nombre,\File::get($file));
+    }
     //para insertar en la base de datos
 
     //  $archivos = Storage::disk('informeAlimentos')->files();
     //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
 
-    $listados = Storage::disk('informeBeneficiarios')->files();
-    return \View('secretaria.listadoBeneficiarios')->with('listados',$listados);
+    $certificados = Storage::disk('informeCobertura')->files();
+    return \View('secretaria.informeCertificacion')->with('certificados',$certificados);
+
+  }
+
+
+
+  public function subirListado(Request $request){
+
+    $rules = array('archivo' => 'max:5000|mimes:xlsx,xls');
+    $messages = [
+    'max'    => 'El archivo no debe ser mayor a 5 megabytes',
+    'mimes' => 'El archivo debe ser un archivo de tipo: xlsx,xls',
+  ];
+    $validator = Validator::make(Input::all(), $rules, $messages );
+
+    if($validator-> fails()){
+      return redirect('/secretaria/beneficiarios')->withErrors($validator);
+    }else {
+      $file=$request->file('archivo');
+      $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
+      Storage::disk('informeBeneficiarios')->put($nombre,\File::get($file));
+    }
+      //para insertar en la base de datos
+
+      //  $archivos = Storage::disk('informeAlimentos')->files();
+      //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
+
+      $listados = Storage::disk('informeBeneficiarios')->files();
+      return \View('secretaria.listadoBeneficiarios')->with('listados',$listados);
 
   }
 

@@ -29,27 +29,27 @@ Route::get('/Secretaria', [
   'as' => 'secretaria'
 ])->middleware('secretaria');
 
-Route::get('/Secretaria/AgregarListadoPae', [
+Route::get('/secretaria/beneficiarios', [
   'uses'=> 'SecretariaController@viewSecretariaListadosPAE',
   'as' => 'secretaria.ListadoPae'
 ])->middleware('secretaria');
 
-Route::get('/Secretaria/registrarInstituciones', [
+Route::get('/secretaria/registrarInstituciones', [
   'uses'=> 'SecretariaController@viewRegInstitucion',
   'as' => 'secretaria.registrarInstituciones'
 ])->middleware('secretaria');
 
-Route::get('/Secretaria/alimentos', [
+Route::get('/secretaria/alimentos', [
   'uses'=> 'SecretariaController@viewSecretariaListadoAlimentos',
   'as' => 'secretaria.infoAlimentos'
 ])->middleware('secretaria');
 
-Route::get('/Secretaria/asistencias', [
+Route::get('/secretaria/asistencias', [
   'uses'=> 'SecretariaController@viewSecretariaAsistencias',
   'as' => 'secretaria.infoAsistencias'
 ])->middleware('secretaria');
 
-Route::get('/Secretaria/certificaciones', [
+Route::get('/secretaria/certificaciones', [
   'uses'=> 'SecretariaController@viewSecretariaCertificaciones',
   'as' => 'secretaria.infoCertificaciones'
 ])->middleware('secretaria');
@@ -59,7 +59,7 @@ Route::get('/Secretaria/modificarDatos', [
   'as' => 'secretaria.modificarDatos'
 ])->middleware('secretaria');
 
-Route::post('/secretaria/regInstitucion',[
+Route::post('/secretaria/registrarInstituciones',[
   'uses'=>'SecretariaController@registrarInstitucion',
   'as'=> 'registrarInstitucion'
 ])->middleware('secretaria');
@@ -72,12 +72,11 @@ Route::post('/secretaria/actualizarDatos',[
 Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInformes')->middleware('secretaria');
 Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaController@descargarInformes')->middleware('secretaria');
 Route::get('/secretaria/descargarCertificados/{file}', 'SecretariaController@descargar')->middleware('secretaria');
-Route::post('/secretaria/certificaciones','SecretariaController@subirArchivo')->middleware('secretaria');
 Route::get('/secretaria/verCertificados/{file}', 'SecretariaController@verCertificado')->middleware('secretaria');
 Route::get('/secretaria/descargarListados/{file}', 'SecretariaController@descargarListados')->middleware('secretaria');
-Route::post('/secretaria/listadosBeneficiarios','SecretariaController@subirListado')->middleware('secretaria');
 Route::get('/secretaria/verReportesInstitucion/{file}/{file2}/{file3}', 'SecretariaController@verReportes')->middleware('secretaria');
-
+Route::post('/secretaria/certificaciones','SecretariaController@subirArchivo')->middleware('secretaria');
+Route::post('/secretaria/beneficiarios','SecretariaController@subirListado')->middleware('secretaria');
 
 
 //Rutas del perfil de institución
@@ -86,12 +85,12 @@ Route::get('/institucion',[
   'as'=>'institucion'
   ])->middleware('institucion');
 
-Route::get('/institucion/cargaAsistencia',[
+Route::get('/institucion/infomeAsistencias',[
   'uses'=>'institucionController@viewInstitucionAsistencias',
   'as'=> 'institucion.cargarAsistencia'
   ])->middleware('institucion');
 
-Route::get('/institucion/cargarInfomeAlimentos',[
+Route::get('/institucion/informeAlimentos',[
   'uses'=>'institucionController@viewInstitucionAlimentos',
   'as'=> 'institucion.cargarInfomeAlimentos'
   ])->middleware('institucion');
@@ -112,8 +111,8 @@ Route::post('/institucion/actualizarDatosInst',[
   'as'=> 'institucion.actualizarDatosInst'
   ])->middleware('institucion');
 
-Route::post('/institucion/cargarInfomeAlimentos/{file}', 'institucionController@subirInformeAlimentos')->middleware('institucion');
-Route::post('/institucion/cargarInfomeAsistencias/{file}', 'institucionController@subirInformeAsistencia')->middleware('institucion');
+Route::post('/institucion/informeAlimentos/{file}', 'institucionController@subirInformeAlimentos')->middleware('institucion');
+Route::post('/institucion/infomeAsistencias/{file}', 'institucionController@subirInformeAsistencia')->middleware('institucion');
 Route::get('/institucion/descargarAlimentos/{file}/{file2}/{file3}', 'institucionController@descargar')->middleware('institucion');
 Route::get('/institucion/descargarListados/{file}', 'institucionController@descargarBeneficiarios')->middleware('institucion');
 Route::get('/institucion/descargarAsistencias/{file}/{file2}/{file3}', 'institucionController@descargar')->middleware('institucion');
