@@ -36,14 +36,14 @@ class SecretariaController extends Controller
 
 
   /**
-   *
+   * Retornar la vista del perfil de institución
    */
   public function viewSecretaria(){
     return view('secretaria.perfilSecretaria');
   }
 
   /**
-   *
+   * Retornar la vista de listado beneficiarios del perfil de secretaria
    */
   public function viewSecretariaListadosPAE(){
     $listados = Storage::disk('informeBeneficiarios')->files();
@@ -51,7 +51,7 @@ class SecretariaController extends Controller
   }
 
   /**
-   *
+   * Retornar la vista para registrar instituciones
    */
   public function viewRegInstitucion(){
     return view('secretaria.registroInstitucion');
@@ -152,13 +152,19 @@ class SecretariaController extends Controller
 
     $validator = Validator::make(Input::all(), $rules, $messages );
     $verificacion=$this->verificarRegistro($nit,$correoElectronico);
+    $verificarRector=$this->verificarRector($rector);
 
+    
       if($validator-> fails()){
           return redirect('/secretaria/registrarInstituciones')->withErrors($validator);
       }elseif (!$verificacion) {
-        alert()->error('El Nit o el Correo de la institucion ya existe', 'Error')->persistent('Close');
+        alert()->error('El Nit o el Correo de la institucion ya existe. Registro Invalido', 'Error')->persistent('Close');
         return redirect()->back();
-      }else{
+      }else if(!$verificarRector){
+        alert()->error('El nombre del rector no puede contener números. Registro Invalido', 'Error')->persistent('Close');
+        return redirect()->back();
+      }
+      else{
         //ingresar a la tabla de instituciones
          $idInstitucion=DB::table('sede_institucion')->insertGetId(['nombre'=>$nombreInstitucion,'rector'=>$rector,
          'codigo'=>$codigo,'nit'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
@@ -180,11 +186,24 @@ class SecretariaController extends Controller
 
  }
 
+ /**
+  * Método que valida que el rector no tenga numeros.
+  */
+ public function verificarRector($rector){
+  if (preg_match ("/^[a-zA-Z[:space:]]+$/", $rector)) {
+    return true;
+  }
+  return false;
+ }
+
+
  public function verificarRegistro($nit,$correo){
     $codigo=DB::table('sede_institucion')->where('codigo', $nit)->exists();
     $email= DB::table('sede_institucion')->where('email', $correo)->exists();
 
     if($codigo=='1' || $email=='1'){
+      return false;
+    }else if($codigo=='1' && $email=='1'){
       return false;
     }
     return true;

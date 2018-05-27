@@ -42,7 +42,8 @@ class LoginController extends Controller
         
          if (Auth::attempt($credentials) && Auth::user()->role=='secretaria') {
           
-           return redirect()->intended('Secretaria');
+           return redirect()->intended('secretaria');
+           
          }else if(Auth::attempt($credentials) && Auth::user()->role=='institucion'){
             
             return redirect()->intended('institucion');
