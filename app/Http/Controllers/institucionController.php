@@ -29,7 +29,7 @@ class institucionController extends Controller
   //Funciones para las vistas del perfil de institucion
 
   /**
-   *
+   * Método que retorna la vista de inicio del perfil de Institucion
    */
   public function viewInicioInstitucion(){
     return view('institucion.perfilInstitucion');
