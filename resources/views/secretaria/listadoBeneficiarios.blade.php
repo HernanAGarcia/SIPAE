@@ -5,7 +5,7 @@
     <h1>Aquí se pueden subir los listados de beficiarios (titulares derecho)</h1><br>
       </br>
 
-        <form action="/secretaria/listadosBeneficiarios" method="post" enctype="multipart/form-data">
+        <form action="/secretaria/beneficiarios" method="post" enctype="multipart/form-data">
           {{csrf_field()}}
           <div class="row" >
               <div class="col-md-7">
@@ -36,6 +36,7 @@
      </table>
 
 </div>
+
 
 
 @endsection
