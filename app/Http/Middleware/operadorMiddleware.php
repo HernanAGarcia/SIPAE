@@ -20,6 +20,8 @@ class operadorMiddleware
             if(Auth::user()->role!='operador'){
                 return redirect('/');
             }
+         }else{
+            return redirect('/');
          }
 
          return $next($request);
