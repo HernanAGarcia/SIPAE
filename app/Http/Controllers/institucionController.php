@@ -147,6 +147,8 @@ class institucionController extends Controller
       $telefono=  $request->get('telefono');
       $nuevoPass= $request->get('nuevoPassword');
 
+      $verificarRector=$this->verificarRector($rector);
+
       $rules = array(
         'rector' => 'required|string|max:60',
         'direccion' => 'required|string|max:60',
@@ -168,7 +170,12 @@ class institucionController extends Controller
          // alert()->error('La contraseña debe tener como minimo 6 caracteres', 'Error')->persistent('Close');
          // return redirect()->back();
          return redirect('/institucion/modificarDatos')->withErrors($validator);
-       }else{
+       }
+       else if(!$verificarRector){
+        alert()->error('El nombre del rector no puede contener números. Registro Invalido', 'Error')->persistent('Close');
+        return redirect()->back();
+        }
+       else{
           //insertar los datos nuevos
           DB::table('sede_institucion')
               ->where('id', Auth::user()->Id_Sede_Institucion)
@@ -184,4 +191,14 @@ class institucionController extends Controller
              return redirect()->back();
        }
     }
+
+  /**
+  * Método que valida que el rector no tenga numeros.
+  */
+ public function verificarRector($rector){
+  if (preg_match ("/^[a-zA-Z[:space:]]+$/", $rector)) {
+    return true;
+  }
+  return false;
+ }
 }//fin de controlador
