@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder
        //  DB::table('secretaria')->insert([
        //      'nombre' => 'Secretaria de Armenia',
        //  ]);
-        
+
        //  DB::table('sede_institucion')->insert([
        //       'nombre' => 'Instituto Montenegro',
        //       'rector' => 'JOSE URIEL GONZALEZ RAMIREZ',
@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
        //       'direccion' =>'Carrera 5 #11-07 - Montenegro',
        //       'telefono'=>'7535600'
        //   ]);
-        
+
          //  DB::table('users')->insert([
         //       'nombre_Usuario' => 'Secretaria de Armenia',
         //       'email' => 'secretaria@gmail.com',
@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
          //      'Id_Sede_Institucion'=>'1',
          //      'Id_Secretaria'=>'1',
         //   ]);
-        
+
         //  DB::table('users')->insert([
        //     'nombre_Usuario' => 'Instituto Montenegro',
        //       'email' => 'montenegro@gmail.com',
@@ -43,14 +43,14 @@ class UserTableSeeder extends Seeder
        //       'Id_Sede_Institucion'=>'1',
        //       'Id_Secretaria'=>'1',
        //   ]);
-       
-       //   DB::table('users')->insert([
-       //       'nombre_Usuario' => 'Operador',
-       //       'email' => 'operador@gmail.com',
-       //       'password' => bcrypt('secret'),
-       //       'role'=>'operador',
-       //       'Id_Sede_Institucion'=>'1',
-       //       'Id_Secretaria'=>'1',
-        //  ]);
+
+         DB::table('users')->insert([
+             'nombre_Usuario' => 'Operador',
+             'email' => 'operador@gmail.com',
+             'password' => bcrypt('secret'),
+             'role'=>'operador',
+             'Id_Sede_Institucion'=>'1',
+             'Id_Secretaria'=>'1',
+         ]);
     }
 }
