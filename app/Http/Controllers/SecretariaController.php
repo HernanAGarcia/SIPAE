@@ -31,7 +31,7 @@ class SecretariaController extends Controller
      */
     public function __construct()
     {
-      $this->middleware('secretaria');
+      //$this->middleware('secretaria');
     }
 
 
@@ -154,7 +154,7 @@ class SecretariaController extends Controller
     $verificacion=$this->verificarRegistro($nit,$correoElectronico);
     $verificarRector=$this->verificarRector($rector);
 
-    
+
       if($validator-> fails()){
           return redirect('/secretaria/registrarInstituciones')->withErrors($validator);
       }elseif (!$verificacion) {
