@@ -39,6 +39,12 @@ Route::get('/secretaria/registrarInstituciones', [
   'as' => 'secretaria.registrarInstituciones'
 ])->middleware('secretaria');
 
+
+Route::get('/secretaria/registrarOperador', [
+  'uses'=> 'SecretariaController@viewRegOperador',
+  'as' => 'secretaria.registrarOperador'
+])->middleware('secretaria');
+
 Route::get('/secretaria/alimentos', [
   'uses'=> 'SecretariaController@viewSecretariaListadoAlimentos',
   'as' => 'secretaria.infoAlimentos'
@@ -62,6 +68,12 @@ Route::get('/secretaria/modificarDatos', [
 Route::post('/secretaria/registrarInstituciones',[
   'uses'=>'SecretariaController@registrarInstitucion',
   'as'=> 'registrarInstitucion'
+])->middleware('secretaria');
+
+
+Route::post('/secretaria/registrarOperador',[
+  'uses'=>'SecretariaController@registrarOperador',
+  'as'=> 'registrarOperador'
 ])->middleware('secretaria');
 
 Route::post('/secretaria/actualizarDatos',[
