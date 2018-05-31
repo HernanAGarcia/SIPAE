@@ -10,10 +10,17 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ Route('secretaria')}}">Inicio<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ Route('secretaria.registrarInstituciones')}}">Registrar Instituciones</a>
-      </li>
 
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Registrar
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{{ Route('secretaria.registrarInstituciones')}}">Registrar Instituciones</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{{ Route('secretaria.registrarOperador')}}">Registrar Operador</a>
+        </div>
+      </li> 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Cargar Informes
