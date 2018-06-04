@@ -35,7 +35,7 @@
       <label for="inputPassword"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contraseña</font></font></label>
     </div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">
+    <button class="btn btn-lg btn-primary btn-block" type="submit" id="iniciarSesion">
       <font style="vertical-align: inherit;">Iniciar Sesión</font>
     </button>
 
