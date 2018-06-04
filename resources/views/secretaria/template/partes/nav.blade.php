@@ -12,13 +12,13 @@
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" name="registrar" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Registrar
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{ Route('secretaria.registrarInstituciones')}}">Registrar Instituciones</a>
+          <a class="dropdown-item" name ="registrarInstitucion" href="{{ Route('secretaria.registrarInstituciones')}}">Registrar Instituciones</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ Route('secretaria.registrarOperador')}}">Registrar Operador</a>
+          <a class="dropdown-item" name="registrarOperador" href="{{ Route('secretaria.registrarOperador')}}">Registrar Operador</a>
         </div>
       </li> 
       <li class="nav-item dropdown">
@@ -47,7 +47,7 @@
         <a class="nav-link" href="{{ Route('secretaria.modificarDatos')}}">Modificar Datos Usuario</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="{{ Route('logout')}}">Salir</a>
+        <a class="nav-link" name="salir" href="{{ Route('logout')}}">Salir</a>
       </li>
     </ul>
   </div>

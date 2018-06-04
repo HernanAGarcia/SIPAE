@@ -44,9 +44,9 @@
             <input class="form-control" name="password" type="password" placeholder="Contraseña" id="password" required="">
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-      <font style="vertical-align: inherit;">Registrar Institucion</font>
-    </button>
+        <button class="btn btn-lg btn-primary btn-block" id="registrarInstitucion" type="submit" >
+            <font style="vertical-align: inherit;">Registrar Institucion</font>
+        </button>
     </form>
 </div>
 @endsection
