@@ -25,7 +25,7 @@ class CreateSedeInstitucionsTable extends Migration
             $table->string('telefono');
             $table->timestamps();
         });
-      
+
     }
 
     /**

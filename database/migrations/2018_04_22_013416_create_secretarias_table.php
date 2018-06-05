@@ -15,7 +15,11 @@ class CreateSecretariasTable extends Migration
     {
         Schema::create('secretaria', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('nit')->unique();
             $table->string('nombre');
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateSecretariasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('secretarias');
+        Schema::dropIfExists('secretaria');
     }
 }

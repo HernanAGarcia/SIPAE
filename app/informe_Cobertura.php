@@ -4,7 +4,7 @@ namespace SIPAE;
 
 use Illuminate\Database\Eloquent\Model;
 
-class informeCobertura extends Model
+class informe_Cobertura extends Model
 {
   protected $table = 'informe_cobertura';
 

@@ -15,10 +15,10 @@
      <th>Descargar</th>
    </tr>
 
-   @foreach($certificado as $archivo)
+   @foreach($listaRutas as $archivo)
    <tr>
-     <td><a value="{{$archivo}}">{{$archivo}}</a></td>
-     <td><a class="link" href="/operador/descargarCertificados/{{$archivo}}">click para descargar</a></td>
+     <td><a value="{{$archivo->id}}">{{$archivo->nombre_Archivo}}</a></td>
+     <td><a class="link" href="/operador/descargarCertificados/{{$archivo->ruta}}">click para descargar</a></td>
      <!--En href va a la funcion de descargar-->
    </tr>
    @endforeach

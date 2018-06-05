@@ -4,6 +4,7 @@ namespace SIPAE\Http\Controllers;
 
 use SIPAE\informe_Alimentos;
 use SIPAE\Sede_Institucion;
+use SIPAE\informe_Beneficiarios;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +49,7 @@ class institucionController extends Controller
    *
    */
   public function viewInstitucionBeneficiarios(){
-    $listados = Storage::disk('informeBeneficiarios')->files();
+    $listados = informe_beneficiarios::select('nombre_Archivo','id', 'ruta')->orderBy('nombre_Archivo', 'DESC')->get();
     return view('institucion.listaBeneficiarios')->with('listados',$listados);
   }
 
@@ -120,8 +121,8 @@ class institucionController extends Controller
     /**
      *
      */
-    public function descargarBeneficiarios($file){
-      $pathtoFile = public_path().'//informeBeneficiarios//'.$file;
+    public function descargarBeneficiarios($file, $file2){
+      $pathtoFile = public_path().'//'.$file.'//'.$file2;
       return response()->download($pathtoFile);
     }
 

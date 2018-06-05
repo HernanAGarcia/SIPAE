@@ -7,7 +7,7 @@
       alimentarios por parte del proveedor</h1><br>
       <br>
 
-          <form action="/institucion/informeAlimentos/{{Auth::user()->	Id_Sede_Institucion}}" method="post" enctype="multipart/form-data">
+          <form action="/institucion/informeAlimentos/{{Auth::user()->Id_Sede_Institucion}}" method="post" enctype="multipart/form-data">
                   {{csrf_field()}}
                 <div class="row" >
                     <div class="col-md-7">
