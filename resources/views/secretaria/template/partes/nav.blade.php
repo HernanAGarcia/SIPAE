@@ -20,7 +20,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" name="registrarOperador" href="{{ Route('secretaria.registrarOperador')}}">Registrar Operador</a>
         </div>
-      </li> 
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Cargar Informes
@@ -28,7 +28,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ Route('secretaria.ListadoPae')}}">Listados de beneficiarios</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ Route('secretaria.infoCertificaciones')}}">Informes de Certificación</a>
+          <a class="dropdown-item" href="{{ Route('secretaria.infoCertificaciones')}}">Certificados de Cobertura</a>
         </div>
       </li>
 

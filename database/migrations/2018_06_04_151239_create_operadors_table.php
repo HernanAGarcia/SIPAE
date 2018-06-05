@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInformeCoberturasTable extends Migration
+class CreateOperadorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateInformeCoberturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('informe_cobertura', function (Blueprint $table) {
+        Schema::create('operador', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_Archivo');
-            $table->string('ruta');
-            $table->string('fecha');
-            $table->integer('codigo_Institucion');
+            $table->string('nombre');
+            $table->integer('nit')->unique();
+            $table->string('email');
+            $table->string('direccion');
+            $table->string('telefono');
             $table->integer('Id_Secretaria')->unsigned();
             $table->foreign('Id_Secretaria')->references('id')->on('secretaria');
             $table->timestamps();
@@ -32,6 +33,6 @@ class CreateInformeCoberturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informe_cobertura');
+        Schema::dropIfExists('operador');
     }
 }

@@ -83,9 +83,9 @@ Route::post('/secretaria/actualizarDatos',[
 
 Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInformes')->middleware('secretaria');
 Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaController@descargarInformes')->middleware('secretaria');
-Route::get('/secretaria/descargarCertificados/{file}', 'SecretariaController@descargar')->middleware('secretaria');
-Route::get('/secretaria/verCertificados/{file}', 'SecretariaController@verCertificado')->middleware('secretaria');
-Route::get('/secretaria/descargarListados/{file}', 'SecretariaController@descargarListados')->middleware('secretaria');
+Route::get('/secretaria/descargarCertificados/{file}/{file2}', 'SecretariaController@descargarListados')->middleware('secretaria');
+Route::get('/secretaria/verCertificados/{file}/{file2}', 'SecretariaController@verCertificado')->middleware('secretaria');
+Route::get('/secretaria/descargarListados/{file}/{file2}', 'SecretariaController@descargarListados')->middleware('secretaria');
 Route::get('/secretaria/verReportesInstitucion/{file}/{file2}/{file3}', 'SecretariaController@verReportes')->middleware('secretaria');
 Route::post('/secretaria/certificaciones','SecretariaController@subirArchivo')->middleware('secretaria');
 Route::post('/secretaria/beneficiarios','SecretariaController@subirListado')->middleware('secretaria');
@@ -126,7 +126,7 @@ Route::post('/institucion/actualizarDatosInst',[
 Route::post('/institucion/informeAlimentos/{file}', 'institucionController@subirInformeAlimentos')->middleware('institucion');
 Route::post('/institucion/infomeAsistencias/{file}', 'institucionController@subirInformeAsistencia')->middleware('institucion');
 Route::get('/institucion/descargarAlimentos/{file}/{file2}/{file3}', 'institucionController@descargar')->middleware('institucion');
-Route::get('/institucion/descargarListados/{file}', 'institucionController@descargarBeneficiarios')->middleware('institucion');
+Route::get('/institucion/descargarListados/{file}/{file2}', 'institucionController@descargarBeneficiarios')->middleware('institucion');
 Route::get('/institucion/descargarAsistencias/{file}/{file2}/{file3}', 'institucionController@descargar')->middleware('institucion');
 
 //Auth::routes();
@@ -153,7 +153,7 @@ Route::get('/operador/ModificarDatos',[
   'as'=>'operador.modificarDatos'
 ]);
 
-Route::get('/operador/descargarCertificados/{file}', 'operadorController@descargar');
+Route::get('/operador/descargarCertificados/{file}/{file2}', 'operadorController@descargar');
 
 Route::post('/operador/actualizarDatos',[
   'uses'=>'operadorController@actualizarDatos',
