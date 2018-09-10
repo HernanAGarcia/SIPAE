@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary justify-content-between">
 
   <nav class="navbar navbar-inverse bg-primary justify-content-between">
@@ -7,22 +8,22 @@
   </nav>
     <div class="collapse navbar-collapse justify-content-md-center" id="navbarToggleExternalContent">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="{{ (Request::is('institucion') ? 'active' : '') }}">
         <a class="nav-link" href="{{ Route('institucion')}}">Inicio<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="{{ (Request::is('institucion/infomeAsistencias') ? 'active' : '') }}">
         <a class="nav-link" href="{{ Route('institucion.cargarAsistencia')}}">Cargar listados de Asistencia</a>
       </li>
-      <li class="nav-item">
+      <li class="{{ (Request::is('institucion/beneficiarios') ? 'active' : '') }}">
         <a class="nav-link" href="{{ Route('institucion.beneficiarios')}}">Listado de Beneficiarios</a>
       </li>
-      <li class="nav-item">
+      <li class="{{ (Request::is('institucion/informeAlimentos') ? 'active' : '') }}">
         <a class="nav-link" href="{{ Route('institucion.cargarInfomeAlimentos')}}">Informes Alimentarios</a>
       </li>
-      <li class="nav-item">
+      <li class="{{ (Request::is('institucion/modificarDatos') ? 'active' : '') }}">
         <a class="nav-link" href="{{ Route('institucion.ModificarDatosInst')}}">Modificar Datos</a>
       </li>
-      <li class="nav-item">
+      <li class="{{ (Request::is('logout') ? 'active' : '') }}">
         <a class="nav-link" href="{{ Route('logout')}}">Salir</a>
       </li>
     </ul>

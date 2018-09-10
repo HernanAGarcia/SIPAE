@@ -7,18 +7,18 @@
   </nav>
   <div class="collapse navbar-collapse justify-content-md-center" id="navbarToggleExternalContent">
     <ul class="navbar-nav ">
-      <li class="nav-item active">
+      <li class="{{ (Request::is('secretaria') ? 'active' : '') }}">
         <a class="nav-link" href="{{ Route('secretaria')}}">Inicio<span class="sr-only">(current)</span></a>
       </li>
-
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" name="registrar" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Registrar
+          Gestionar
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" name ="registrarInstitucion" href="{{ Route('secretaria.registrarInstituciones')}}">Registrar Instituciones</a>
+          <a class="dropdown-item" name ="registrarInstitucion" href="{{ Route('secretaria.registrarInstituciones')}}">Gestionar Instituciones</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" name="registrarOperador" href="{{ Route('secretaria.registrarOperador')}}">Registrar Operador</a>
+          <a class="dropdown-item" name="registrarOperador" href="{{ Route('secretaria.registrarOperador')}}">Gestionar Operador</a>
         </div>
       </li> 
       <li class="nav-item dropdown">
@@ -43,10 +43,10 @@
         </div>
       </li>
 
-      <li class="nav-item">
+      <li class="{{ (Request::is('secretaria/modificarDatos') ? 'active' : '') }}">
         <a class="nav-link" href="{{ Route('secretaria.modificarDatos')}}">Modificar Datos Usuario</a>
       </li>
-      <li class="nav-item ">
+      <li class="{{ (Request::is('logout') ? 'active' : '') }} ">
         <a class="nav-link" name="salir" href="{{ Route('logout')}}">Salir</a>
       </li>
     </ul>

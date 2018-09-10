@@ -54,7 +54,9 @@ class SecretariaController extends Controller
    * Retornar la vista para registrar instituciones
    */
   public function viewRegInstitucion(){
-    return view('secretaria.registroInstitucion');
+    $instituciones=DB::table('sede_institucion')->select('id','nombre', 'rector')->get();
+    
+    return view('secretaria.listadoInstituciones')->with('instituciones',$instituciones);
   }
 
   /**
