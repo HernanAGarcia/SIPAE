@@ -10,14 +10,18 @@ class Sede_Institucion extends Model
     protected $table = 'sede_institucion';
     protected $fillable = ['nombre'];
 
-
+    /**
+     * 
+     */
     public static function listarSedes($id){
     //  $sedesInst=DB::table('Sede_Institucion')->where('Id_Institucion','=',$id)->get();
       return Sede_Institucion::where('id','=',$id)->get();
 
     }
 
-
+    /**
+    * 
+    */
     public static function mostrarCodigo($id){
     //  $sedesInst=DB::table('Sede_Institucion')->where('Id_Institucion','=',$id)->get();
       //return Sede_Institucion::where('id','=',$id)->get();
@@ -28,7 +32,9 @@ class Sede_Institucion extends Model
     return $sede;
     }
 
-
+    /**
+     * 
+     */
     public static function rutas($id){
     //  $sedesInst=DB::table('Sede_Institucion')->where('Id_Institucion','=',$id)->get();
     //$archivos = File::files("informeAlimentos/1");
@@ -36,9 +42,17 @@ class Sede_Institucion extends Model
 
     }
 
-
-
+    /**
+     * 
+     */
     public function scopeListar($query){
         return $query->select('nombre','id', 'codigo');
     }
+
+      
+    public function listarInstituciones(){
+      
+
+    }
+    
 }

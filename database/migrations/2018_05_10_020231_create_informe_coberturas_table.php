@@ -15,12 +15,11 @@ class CreateInformeCoberturasTable extends Migration
     {
         Schema::create('informe_cobertura', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_Archivo');
+            $table->string('nombreArchivo');
             $table->string('ruta');
-            $table->string('fecha');
-            $table->integer('codigo_Institucion');
-            $table->integer('Id_Secretaria')->unsigned();
-            $table->foreign('Id_Secretaria')->references('id')->on('secretaria');
+            $table->Date('fecha');
+            $table->integer('Id_Sede_Institucion')->unsigned();
+            $table->foreign('Id_Sede_Institucion')->references('id')->on('sede_institucion');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateInformeCoberturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informe_cobertura');
+        Schema::dropIfExists('informe_coberturas');
     }
 }

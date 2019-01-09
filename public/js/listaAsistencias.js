@@ -51,3 +51,13 @@ $('#tabla tr:not(:first-child)').slice(0).remove();
   }
 
 })});
+
+$('.botonBuscar').on('click', function(){
+
+  $('#tabla tr:not(:first-child)').slice(0).remove();
+  
+    $.get("/api/sedes/"+institucion_id+"/asistencias", function(data){
+  
+    
+  
+  })});

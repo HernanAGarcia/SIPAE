@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Filesystem;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use SIPAE\informe_Cobertura;
 use Input;
 use File;
 use DB;
@@ -38,10 +37,10 @@ class operadorController extends Controller
      *
      */
     public function certificados(){
-      $listaRutas = informe_cobertura::select('nombre_Archivo','id', 'ruta')
-                  ->orderBy('nombre_Archivo', 'DESC')
-                  ->get();
-      return view('operador.certificadosCobertura')->with('listaRutas',$listaRutas);
+
+      $certificado = Storage::disk('informeCobertura')->files();
+      return view('operador.certificadosCobertura')->with('certificado',$certificado);
+      //return view('operador.certificadosCobertura');
     }
 
     /**
@@ -51,11 +50,13 @@ class operadorController extends Controller
       return view('operador.reporteAnomalias');
     }
 
+
+
     /**
      *
      */
-    public function descargar($file, $file2){
-      $pathtoFile = public_path().'/'.$file.'/'.$file2;
+    public function descargar($file){
+      $pathtoFile = public_path().'//informeCobertura//'.$file;
       return response()->download($pathtoFile);
     }
 

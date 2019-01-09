@@ -13,9 +13,9 @@ class InformeAlimentos extends Migration
      */
     public function up()
     {
-        Schema::create('informe_alimentos', function (Blueprint $table) {
+        Schema::create('informe_Alimentos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_Archivo');
+            $table->string('nombreArchivo');
             $table->string('ruta');
             $table->Date('fecha');
             $table->integer('Id_Sede_Institucion')->unsigned();

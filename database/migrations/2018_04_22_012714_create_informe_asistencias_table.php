@@ -15,9 +15,9 @@ class CreateInformeAsistenciasTable extends Migration
     {
         Schema::create('informe_asistencia', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre_Archivo');
+            $table->string('nombreArchivo');
             $table->string('ruta');
-            $table->string('fecha');
+            $table->Date('fecha');
             $table->integer('Id_Sede_Institucion')->unsigned();
             $table->foreign('Id_Sede_Institucion')->references('id')->on('sede_institucion');
             $table->timestamps();
@@ -31,6 +31,6 @@ class CreateInformeAsistenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('informe__asistencia');
+        Schema::dropIfExists('informe__asistencias');
     }
 }

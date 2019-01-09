@@ -2,24 +2,31 @@
 
 @section('content')
 <div class="container">
-    <h3>Página de Registro del Operador</h3>
+    <h3 class="text-center">Actualización de Datos</h3>
     <p>
-    En esta sección de la página se puede resgistrar el operador con el cual se va a trabajar 
+    En esta sección de la página se puede actualizar los datos de una institución que estan focalizadas
     en el programa de alimentación escolar (PAE). A continuación, se presenta el formulario
-    donde podrá diligenciar cada uno de los datos del operador.
+    donde podrá visualizar los datos actuales de la institución y poder reescribir estos datos.
     <br>
-    Todos los campos son de caracter obligatorios
+    Todos los campos son de caracter obligatorios.
+    <br>
+    Por favor no dejar ningun campo en blanco, si esto para la actualización no se realiza de 
+    forma exitosa.
     </p>
 
-    <form class="form" action="{{ route('registrarOperador')}}" method="POST" role="form">
+    <form class="form" action="#" method="POST" role="form">
     {{ csrf_field() }}
         <div class="form-group">
-            <label for="example-text-input">Nombre del Operador</label>
-            <input class="form-control" name="nombreOperador" type="text" placeholder="Nombre Operador" id="nombreOperador" required="">
+            <label for="example-text-input">Nombre Institución</label>
+            <input class="form-control" name="nombreInstitucion" type="text" placeholder="Nombre Institucion" id="nombreInstitucion" required="">
         </div>
         <div class="form-group">
             <label for="example-text-input">NIT</label>
-            <input class="form-control" name="NIT" type="text" placeholder="NIT del Operador" id="nit" required="">
+            <input class="form-control" name="NIT" type="text" placeholder="NIT de la Institución" id="nit" required="">
+        </div>
+        <div class="form-group">
+            <label for="example-text-input">Rector</label>
+            <input class="form-control" name="rector" type="text" placeholder="Rector de la Institución" id="rector" required="">
         </div>
         <div class="form-group">
             <label for="example-text-input">Dirección </label>
@@ -39,9 +46,9 @@
             <input class="form-control" name="password" type="password" placeholder="Contraseña" id="password" required="">
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">
-      <font style="vertical-align: inherit;">Registrar Operador</font>
-    </button>
+        <button class="btn btn-lg btn-primary btn-block" id="registrarInstitucion" type="submit" >
+            <font style="vertical-align: inherit;">Actualiza Datos</font>
+        </button>
     </form>
 </div>
 @endsection

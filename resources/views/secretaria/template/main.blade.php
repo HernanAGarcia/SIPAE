@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/navbar.css')}}" >
   <link rel="stylesheet" href="{{asset('plugins/chosen/chosen.css')}}" >
-  <link rel="stylesheet" href ="{{asset('css/sweetalert.css')}}" >
+  <link rel="stylesheet" href ="{{asset('css/sweetalert.min.css')}}" >
 
 
   <!-- Scripts -->
@@ -28,14 +28,26 @@
   </script>
 </head>
 <body>
-  <div class="container">
-
-    <h1>SIPAE</h1>
-
-    <h5 class="text-right"> <small>Ministerio de Educación Nacional</small></h5><br>
-    <h5 class="text-right"> <small>Secretaría de Educación Armenia, Quindío</small></h5>
-
-    @include('secretaria.template.partes.nav')
+<!--Contenedor general-->
+<div class="container">
+  <!--Contenedor del encabezado y el menú-->
+  <div class="container" >
+    <div class="row">
+      <div class="col-md-2">
+        <img class="rounded float-left" src="/img/simboloGobernacion.png" border="0" width="100" height="100">
+      </div>
+      <div class="col-md">
+        <h1 class="text-left">SIPAE</h1>
+        <h5 class="text-right"> <small>Ministerio de Educación Nacional</small></h5>
+        <h5 class="text-right"> <small>Secretaría de Educación Armenia, Quindío</small></h5>
+      </div>
+      <div class="col-md-2">
+        <img class="rounded float-right" src="/img/quindio-corazon-de-la-zona-cafetera.jpg" border="0" width="100" height="100">
+      </div>
+    </div>
+    
+    @include('secretaria.template.partes.navSecretaria')
+    
   </div>
   @yield('content')
 
@@ -63,5 +75,6 @@
   {!! Html::script('js\listaAsistencias.js')!!}
   <!-- Incluya esto después del archivo de alerta dulce js -->
   @include('sweet::alert')
+  </div>
 </body>
 </html>

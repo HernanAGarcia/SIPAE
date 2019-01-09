@@ -14,57 +14,115 @@ use Illuminate\Support\Facades\Storage;
 |
 */
 
+/**
+ * Ruta para el index de la plataforma, la página de login
+ */
 Route::get('/',[
   'uses'=>'Auth\LoginController@index',
   'as'=>'inicio'])->middleware('guest');
 
+/**
+ * Ruta del Login de la aplicación
+ */
 Route::post('/login','Auth\LoginController@login')->name('login');
 
+/**
+ * Ruta para utilizar el método de logout del controlador
+ */
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
+/**
+ * Ruta para obtener las instituciones
+ */
 Route::get('/sedes/{id}','SecretariaController@getSedes')->middleware('secretaria');
 
+/**
+ * Ruta para traer la vista de la pagina de inicio del perfil de secretaria
+ */
 Route::get('/secretaria', [
   'uses'=> 'SecretariaController@viewSecretaria',
   'as' => 'secretaria'
 ])->middleware('secretaria');
 
+/**
+ * Ruta para mostrar la pagina de los listados de beneficiarios del Programa de alimentacion escolar
+ */
 Route::get('/secretaria/beneficiarios', [
   'uses'=> 'SecretariaController@viewSecretariaListadosPAE',
   'as' => 'secretaria.ListadoPae'
 ])->middleware('secretaria');
 
-Route::get('/secretaria/registrarInstituciones', [
-  'uses'=> 'SecretariaController@viewRegInstitucion',
-  'as' => 'secretaria.registrarInstituciones'
+/**
+ * Ruta para mostrar la vista del listado de instituciones que pertenecen al 
+ * programa de alimentación escolar
+ */
+Route::get('/secretaria/ListadoInstituciones', [
+  'uses'=> 'SecretariaController@viewListadoInstitucion',
+  'as' => 'secretaria.listadoInstituciones'
 ])->middleware('secretaria');
 
+/**
+ * Ruta para mostrar el formulario en el cual se debe registrar una institución educativa
+ */
+Route::get('secretaria/RegInstitucion',[
+  'uses'=>'SecretariaController@viewRegInstitucion',
+  'as' => 'secretaria.registroInstitucion'
+])->middleware('secretaria');
 
+/**
+ * 
+ */
+Route::get('/secretaria/actualizarIns',[
+  'uses'=>'SecretariaController@viewActualizarInstitucion',
+  'as'=>'secretaria.viewActualizarInstitucion'
+])->middleware('secretaria');
+
+/**
+ * Ruta para mostrar el formulario de registro de un operador
+ */
 Route::get('/secretaria/registrarOperador', [
   'uses'=> 'SecretariaController@viewRegOperador',
   'as' => 'secretaria.registrarOperador'
 ])->middleware('secretaria');
 
+/**
+ * Ruta para mostrar la vista de los listados de informes de alimentos entregados por el operador
+ */
 Route::get('/secretaria/alimentos', [
   'uses'=> 'SecretariaController@viewSecretariaListadoAlimentos',
   'as' => 'secretaria.infoAlimentos'
 ])->middleware('secretaria');
 
+/**
+ * Ruta para mostrar la vista de los listados de asistencia que suben las instituciones
+ * a la plataforma
+ */
 Route::get('/secretaria/asistencias', [
   'uses'=> 'SecretariaController@viewSecretariaAsistencias',
   'as' => 'secretaria.infoAsistencias'
 ])->middleware('secretaria');
 
+/**
+ * ruta para devolver la vista de los listados de certificaciones subidos a la 
+ * plataforma por parte de los operadores
+ */
 Route::get('/secretaria/certificaciones', [
   'uses'=> 'SecretariaController@viewSecretariaCertificaciones',
   'as' => 'secretaria.infoCertificaciones'
 ])->middleware('secretaria');
 
+/**
+ * Ruta para mostrar la vista de modificar los datos del perfil de
+ * secretaria de educacion
+ */
 Route::get('/secretaria/modificarDatos', [
   'uses'=> 'SecretariaController@viewSecretariaModificarDatos',
   'as' => 'secretaria.modificarDatos'
 ])->middleware('secretaria');
 
+/**
+ * 
+ */
 Route::post('/secretaria/registrarInstituciones',[
   'uses'=>'SecretariaController@registrarInstitucion',
   'as'=> 'registrarInstitucion'
@@ -83,9 +141,9 @@ Route::post('/secretaria/actualizarDatos',[
 
 Route::get('/secretaria/alimentos/{file}/{file2}/{file3}', 'SecretariaController@descargarInformes')->middleware('secretaria');
 Route::get('/secretaria/asistencias/{file}/{file2}/{file3}', 'SecretariaController@descargarInformes')->middleware('secretaria');
-Route::get('/secretaria/descargarCertificados/{file}/{file2}', 'SecretariaController@descargarListados')->middleware('secretaria');
-Route::get('/secretaria/verCertificados/{file}/{file2}', 'SecretariaController@verCertificado')->middleware('secretaria');
-Route::get('/secretaria/descargarListados/{file}/{file2}', 'SecretariaController@descargarListados')->middleware('secretaria');
+Route::get('/secretaria/descargarCertificados/{file}', 'SecretariaController@descargar')->middleware('secretaria');
+Route::get('/secretaria/verCertificados/{file}', 'SecretariaController@verCertificado')->middleware('secretaria');
+Route::get('/secretaria/descargarListados/{file}', 'SecretariaController@descargarListados')->middleware('secretaria');
 Route::get('/secretaria/verReportesInstitucion/{file}/{file2}/{file3}', 'SecretariaController@verReportes')->middleware('secretaria');
 Route::post('/secretaria/certificaciones','SecretariaController@subirArchivo')->middleware('secretaria');
 Route::post('/secretaria/beneficiarios','SecretariaController@subirListado')->middleware('secretaria');
@@ -126,7 +184,7 @@ Route::post('/institucion/actualizarDatosInst',[
 Route::post('/institucion/informeAlimentos/{file}', 'institucionController@subirInformeAlimentos')->middleware('institucion');
 Route::post('/institucion/infomeAsistencias/{file}', 'institucionController@subirInformeAsistencia')->middleware('institucion');
 Route::get('/institucion/descargarAlimentos/{file}/{file2}/{file3}', 'institucionController@descargar')->middleware('institucion');
-Route::get('/institucion/descargarListados/{file}/{file2}', 'institucionController@descargarBeneficiarios')->middleware('institucion');
+Route::get('/institucion/descargarListados/{file}', 'institucionController@descargarBeneficiarios')->middleware('institucion');
 Route::get('/institucion/descargarAsistencias/{file}/{file2}/{file3}', 'institucionController@descargar')->middleware('institucion');
 
 //Auth::routes();
@@ -153,7 +211,7 @@ Route::get('/operador/ModificarDatos',[
   'as'=>'operador.modificarDatos'
 ]);
 
-Route::get('/operador/descargarCertificados/{file}/{file2}', 'operadorController@descargar');
+Route::get('/operador/descargarCertificados/{file}', 'operadorController@descargar');
 
 Route::post('/operador/actualizarDatos',[
   'uses'=>'operadorController@actualizarDatos',

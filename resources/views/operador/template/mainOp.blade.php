@@ -16,7 +16,7 @@
   <!--Estilos-->
   <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('css/navbar.css')}}" >
-  <link rel="stylesheet" href ="{{asset('css/sweetalert.css')}}" >
+  <link rel="stylesheet" href ="{{asset('css/sweetalert.min.css')}}" >
 
   <!-- Scripts -->
   <script>

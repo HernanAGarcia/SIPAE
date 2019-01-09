@@ -1,9 +1,8 @@
 @extends('secretaria.template.main')
-@section('css')
-<link rel="stylesheet" href="css/bootstrap.min.css">
+
 @section('content')
 <div class="container">
-    <h3>Página de Registro de Instituciones</h3>
+    <h3 class="text-center">Registro de Instituciones</h3>
     <p>
     En esta sección de la página se pueden resgistrar las instituciones que estan focalizadas
     en el programa de alimentación escolar (PAE). A continuación, se presenta el formulario

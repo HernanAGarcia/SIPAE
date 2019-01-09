@@ -26,10 +26,10 @@
          <th>Nombre</th>
          <th>Descargar</th>
        </tr>
-         @foreach($listaRutas as $archivo)
-         <tr>
-           <td><a value="{{$archivo->id}}">{{$archivo->nombre_Archivo}}</a></td>
-           <td><a class="link" href="/secretaria/descargarListados/{{$archivo->ruta}}">click para descargar</a></td>
+       @foreach($listados as $archivo)
+       <tr>
+         <td><a value="{{$archivo}}">{{$archivo}}</a></td>
+         <td><a class="link" href="/secretaria/descargarListados/{{$archivo}}">click para descargar</a></td>
          <!--En href va a la funcion de descargar-->
        </tr>
        @endforeach

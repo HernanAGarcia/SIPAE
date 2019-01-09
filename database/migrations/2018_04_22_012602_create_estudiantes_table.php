@@ -15,7 +15,6 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiante', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('documento');
             $table->string('nombre');
             $table->string('apellido');
             $table->string('grado');
@@ -33,6 +32,6 @@ class CreateEstudiantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estudiante');
+        Schema::dropIfExists('estudiantes');
     }
 }

@@ -15,7 +15,7 @@ class CreateAsistenciasTable extends Migration
     {
         Schema::create('asistencia', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fecha');
+            $table->Date('fecha');
             $table->boolean('asiste');
             $table->integer('Id_Estudiante')->unsigned();
             $table->foreign('Id_Estudiante')->references('id')->on('estudiante');
@@ -30,6 +30,6 @@ class CreateAsistenciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asistencia');
+        Schema::dropIfExists('asistencias');
     }
 }

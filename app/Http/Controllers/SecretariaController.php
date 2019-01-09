@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\DB;
 use App\http\Controllers\Controllers;
 use SIPAE\institucion;
 use SIPAE\Sede_Institucion;
-use SIPAE\informe_Cobertura;
-use SIPAE\informe_Beneficiarios;
 use Illuminate\Support\CollectionStdClass;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -45,10 +43,44 @@ class SecretariaController extends Controller
   }
 
   /**
-   * Retornar la vista para registrar instituciones
+   * Retornar la vista de listado beneficiarios del perfil de secretaria
+   */
+  public function viewSecretariaListadosPAE(){
+    $listados = Storage::disk('informeBeneficiarios')->files();
+    return view('secretaria.listadoBeneficiarios')->with('listados',$listados);
+  }
+
+
+  /**
+   * Función para devolver la vista del formulario para registrar una institucion
    */
   public function viewRegInstitucion(){
     return view('secretaria.registroInstitucion');
+  }
+
+  /**
+   * Funcion para actualizar o editar los datos de una institución
+   * que se encuentra registrada en el sistema
+   */
+  public function viewActualizarInstitucion(Request $request){
+
+    echo $request;
+   // $nombreInstitucion=$request->get('nombre');
+    //primero buscar la institución por el nombre y el rector
+    //$institucion=DB::table('sede_institucion')->where()->get();
+
+    //luego devolver la vista de actualizar con los datos 
+    return view('secretaria.actualizarInstitucion');
+  }
+
+
+  /**
+   * Retornar la vista para ver el listado de las instituciones instituciones
+   */
+  public function viewListadoInstitucion(){
+    $instituciones=DB::table('sede_institucion')->select('id','nombre', 'rector')->get();
+    
+    return view('secretaria.listadoInstituciones')->with('instituciones',$instituciones);
   }
 
   /**
@@ -77,6 +109,14 @@ class SecretariaController extends Controller
   /**
    *
    */
+  public function descargarInformes($file, $file2, $file3){
+    $pathtoFile = public_path().'//'.$file.'//'.$file2.'//'.$file3;
+    return response()->download($pathtoFile);
+  }
+
+  /**
+   *
+   */
   public function viewSecretariaAsistencias(){
     $listaInstitucion = sede_institucion::listar()->get();
    return view('secretaria.informeAsistencias',compact('listaInstitucion','archivos'));
@@ -91,23 +131,12 @@ class SecretariaController extends Controller
   }
 
   /**
-   * Retornar la vista de listado beneficiarios del PAE
-   */
-  public function viewSecretariaListadosPAE(){
-    $listaRutas = informe_beneficiarios::select('nombre_Archivo','id', 'ruta')
-                ->orderBy('nombre_Archivo', 'DESC')
-                ->get();
-    return view('secretaria.listadoBeneficiarios')->with('listaRutas',$listaRutas);
-  }
-
-  /**
-   *Retornar la vista de listado certificados de cobertura del PAE
+   *
    */
   public function viewSecretariaCertificaciones(){
-    $listaRutas = informe_cobertura::select('nombre_Archivo','id', 'ruta')
-                ->orderBy('nombre_Archivo', 'DESC')
-                ->get();
-    return view('secretaria.informeCertificacion')->with('listaRutas',$listaRutas);
+    $certificados = Storage::disk('informeCobertura')->files();
+    return view('secretaria.informeCertificacion')->with('certificados',$certificados);
+    //return view('secretaria.informeCertificacion');
   }
 
   /**
@@ -174,27 +203,44 @@ class SecretariaController extends Controller
          'codigo'=>$codigo,'nit'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
          'telefono'=>$telefono]);
 
+         // se crean los directorios donde se almacenara los reportes de cada institucion
+         Storage::makeDirectory('informeAsistencias//'.$idInstitucion);
+         Storage::makeDirectory('informeAlimentos//'.$idInstitucion);
+
            //ingresar en la tabla de usuarios para el inicio de sesion
            DB::table('users')->insert(['nombre_Usuario'=>$nombreInstitucion,'email'=>$correoElectronico,
-           'password'=>Hash::make($password),'role'=>'institucion','Id_Sede_Institucion'=>$idInstitucion,
-           'Id_Secretaria'=>$idSecretaria]);
+           'password'=>Hash::make($password),'role'=>'institucion','Id_Sede_Institucion'=>$idInstitucion,'Id_Secretaria'=>$idSecretaria]);
            alert()->success('Registro completo', 'Aceptado')->persistent('Close');
 
-          // se crean los directorios donde se almacenara los reportes de cada institucion
-           File::makeDirectory('informeAsistencias//'.$idInstitucion);
-           File::makeDirectory('informeAlimentos//'.$idInstitucion);
+          // Storage::MakeDirectory(public_path('my_new_directory'));
 
            return redirect()->back();
       }
-   }
+ }
 
-/**
+ /**
+  * Función para actualizar los datos una de institución a la que se desea editar
+  */
+ public function actualizarInstitucion(Request $request){
+
+ }
+
+ /**
+  * Función para suspender una institución de la plataforma 
+  * la cual no podra ingresar al sistema por que ya no hace parte del programa de alimentación escolar
+  */
+ public function suspenderInstitucin(){
+
+ }
+
+  /**
    * Función la cual permite registrar el operador en el sistema
    */
- public function registrarOperador(Request $request){
+  public function registrarOperador(Request $request){
 
     $nombreOperador= $request->get('nombreOperador');
     $nit= $request->get('NIT');
+    $codigo= $request->get('NIT');
     $direccion= $request->get('direccion');;
     $telefono= $request->get('telefono');;
     $correoElectronico= $request->get('email');;
@@ -224,7 +270,7 @@ class SecretariaController extends Controller
 
     $validator = Validator::make(Input::all(), $rules, $messages );
     $verificacion=$this->verificarRegistroOperador($nit,$correoElectronico);
-
+    
 
       if($validator-> fails()){
           return redirect('/secretaria/registrarOperador')->withErrors($validator);
@@ -234,21 +280,27 @@ class SecretariaController extends Controller
       }
       else{
         //ingresar a la tabla de instituciones
-         $idOperador=DB::table('operador')->insertGetId(['nombre'=>$nombreOperador,
-         'nit'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
-         'telefono'=>$telefono,'Id_Secretaria'=>$idSecretaria]);
+         $idInstitucion=DB::table('operador')->insertGetId(['nombre'=>$nombreOperador,
+         'codigo'=>$codigo,'nit'=>$nit, 'email'=>$correoElectronico,'direccion'=>$direccion,
+         'telefono'=>$telefono]);
+         // se crean los directorios donde se almacenara los reportes de cada institucion
+          //File::makeDirectory('informeAsistencias//'.$idInstitucion);
+         // File::makeDirectory('informeAlimentos//'.$idInstitucion);
 
            //ingresar en la tabla de usuarios para el inicio de sesion
            DB::table('users')->insert(['nombre_Usuario'=>$nombreOperador,'email'=>$correoElectronico,
-           'password'=>Hash::make($password),'role'=>'operador','Id_Sede_Institucion'=>$idOperador,
-           'Id_Secretaria'=>$idSecretaria, 'Id_operador'=>$idOperador]);
+           'password'=>Hash::make($password),'role'=>'operador','Id_Sede_Institucion'=>$idInstitucion,'Id_Secretaria'=>$idSecretaria]);
            alert()->success('Registro completo', 'Aceptado')->persistent('Close');
 
           // Storage::MakeDirectory(public_path('my_new_directory'));
 
            return redirect()->back();
       }
-  }
+
+
+ }
+
+
 
  /**
   * Método que valida que el rector no tenga numeros.
@@ -261,24 +313,28 @@ class SecretariaController extends Controller
  }
 
 /**
- *
+ * 
  */
  public function verificarRegistroOperador($nit,$correo){
-  $nit=DB::table('operador')->where('nit', $nit)->exists();
+  $codigo=DB::table('operador')->where('codigo', $nit)->exists();
   $email= DB::table('operador')->where('email', $correo)->exists();
 
-  if($nit=='1' || $email=='1'){
+  if($codigo=='1' || $email=='1'){
+    return false;
+  }else if($codigo=='1' && $email=='1'){
     return false;
   }
   return true;
 
- }
+}
 
  /**
-  *
+  * Funcion para verificar el registro de una institucion nueva en el sistema
+  * verifica que la institución no se encuentre registrada en el sistema por medio
+  * del codigo del nit y el correo de la institución que se manejan como atributos únicos
   */
  public function verificarRegistro($nit,$correo){
-    $codigo=DB::table('sede_institucion')->where('nit', $nit)->exists();
+    $codigo=DB::table('sede_institucion')->where('codigo', $nit)->exists();
     $email= DB::table('sede_institucion')->where('email', $correo)->exists();
 
     if($codigo=='1' || $email=='1'){
@@ -287,12 +343,13 @@ class SecretariaController extends Controller
       return false;
     }
     return true;
+
   }
 
- /**
- *
- */
- public function actualizarDatos(Request $request){
+  /**
+   *
+   */
+public function actualizarDatos(Request $request){
   $nuevoPass= $request->get('nuevosPassword');
   if(strlen($nuevoPass)<6){
     alert()->error('La contraseña debe tener como minimo 6 caracteres', 'Error')->persistent('Close');
@@ -304,27 +361,28 @@ class SecretariaController extends Controller
          alert()->success('La contraseña se ha cambiado', 'Exito')->persistent('Close');
           return redirect()->back();
   }
- }
+}
 
 
-  public function descargarListados($file, $file2){
-    $pathtoFile = public_path().'//'.$file.'//'.$file2;
+  public function descargar($file){
+    $pathtoFile = public_path().'//informeCobertura//'.$file;
     return response()->download($pathtoFile);
   }
 
-  public function verCertificado($file, $file2){
-    $pathtoFile = public_path().'//'.$file.'//'.$file2;
+  public function descargarListados($file){
+    $pathtoFile = public_path().'//informeBeneficiarios//'.$file;
+    return response()->download($pathtoFile);
+  }
+
+
+  public function verCertificado($file){
+    $pathtoFile = public_path().'//informeCobertura//'.$file;
     return response()->file($pathtoFile);
   }
 
   public function verReportes($file, $file2, $file3){
     $pathtoFile = public_path().'//'.$file.'//'.$file2.'//'.$file3;
     return response()->file($pathtoFile);
-  }
-
-  public function descargarInformes($file, $file2, $file3){
-    $pathtoFile = public_path().'//'.$file.'//'.$file2.'//'.$file3;
-    return response()->download($pathtoFile);
   }
 
 
@@ -335,36 +393,27 @@ class SecretariaController extends Controller
     $messages = [
     'max'    => 'El archivo no debe ser mayor a 5 megabytes',
     'mimes' => 'El archivo debe ser un archivo de tipo: xlsx,xls',
-      ];
+  ];
     $validator = Validator::make(Input::all(), $rules, $messages );
 
     if($validator-> fails()){
       return redirect('/secretaria/certificaciones')->withErrors($validator);
     }else {
     $file=$request->file('archivo');
-    $fechas =Carbon::now();
-    $nombre =$fechas->format('dmYHis')."-".$file->getClientOriginalName();
+    $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
     Storage::disk('informeCobertura')->put($nombre,\File::get($file));
-
-    //para insertar en la base de datos
-      //$nombreArchivo=$nombre;
-      $ruta='informeCobertura/'.$nombre;
-      $fecha=Carbon::now()->toDateString();
-      $idSecretaria= Auth::user()->id;
-      $idInforme=DB::table('informe_cobertura')->insertGetId([
-       'nombre_Archivo'=>$nombre,
-       'ruta'=>$ruta,
-       'fecha'=>$fecha,
-       'Id_Secretaria'=>$idSecretaria,
-       'codigo_Institucion'=> '0']);
     }
+    //para insertar en la base de datos
 
-    $listaRutas = informe_cobertura::select('nombre_Archivo','id', 'ruta')->orderBy('nombre_Archivo', 'DESC')->get();
-    return view('secretaria.informeCertificacion')->with('listaRutas',$listaRutas);
-    // $certificados = Storage::disk('informeCobertura')->files();
-    // return \View('secretaria.informeCertificacion')->with('certificados',$certificados);
+    //  $archivos = Storage::disk('informeAlimentos')->files();
+    //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
+
+    $certificados = Storage::disk('informeCobertura')->files();
+    return \View('secretaria.informeCertificacion')->with('certificados',$certificados);
 
   }
+
+
 
   public function subirListado(Request $request){
 
@@ -372,33 +421,23 @@ class SecretariaController extends Controller
     $messages = [
     'max'    => 'El archivo no debe ser mayor a 5 megabytes',
     'mimes' => 'El archivo debe ser un archivo de tipo: xlsx,xls',
-    ];
+  ];
     $validator = Validator::make(Input::all(), $rules, $messages );
 
     if($validator-> fails()){
       return redirect('/secretaria/beneficiarios')->withErrors($validator);
     }else {
       $file=$request->file('archivo');
-      $fechas =Carbon::now();
-      $nombre =$fechas->format('dmYHis')."-".$file->getClientOriginalName();
+      $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
       Storage::disk('informeBeneficiarios')->put($nombre,\File::get($file));
-
-      //para insertar en la base de datos
-        //$nombreArchivo=$nombre;
-        $ruta='informeBeneficiarios/'.$nombre;
-        $fecha=Carbon::now()->toDateString();
-        $idSecretaria= Auth::user()->id;
-        $idInforme=DB::table('informe_beneficiarios')->insertGetId([
-         'nombre_Archivo'=>$nombre,
-         'ruta'=>$ruta,
-         'fecha'=>$fecha,
-         'Id_Secretaria'=>$idSecretaria,
-         'codigo_Institucion'=> '0']);
     }
-      $listaRutas = informe_beneficiarios::select('nombre_Archivo','id', 'ruta')->orderBy('nombre_Archivo', 'DESC')->get();
-      return view('secretaria.listadoBeneficiarios')->with('listaRutas',$listaRutas);
-      // $listados = Storage::disk('informeBeneficiarios')->files();
-      // return \View('secretaria.listadoBeneficiarios')->with('listados',$listados);
+      //para insertar en la base de datos
+
+      //  $archivos = Storage::disk('informeAlimentos')->files();
+      //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
+
+      $listados = Storage::disk('informeBeneficiarios')->files();
+      return \View('secretaria.listadoBeneficiarios')->with('listados',$listados);
 
   }
 
