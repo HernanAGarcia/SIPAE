@@ -59,20 +59,35 @@ class SecretariaController extends Controller
   }
 
   /**
-   * Funcion para actualizar o editar los datos de una institución
+   * Funcion que devuelve la vista para actualizar o editar los datos de una institución
    * que se encuentra registrada en el sistema
    */
-  public function viewActualizarInstitucion(Request $request){
+  public function viewActualizarInstitucion($id){
 
-    echo $request;
-   // $nombreInstitucion=$request->get('nombre');
-    //primero buscar la institución por el nombre y el rector
-    //$institucion=DB::table('sede_institucion')->where()->get();
+    //para traer los datos de la institucion de sede_instituciones 
+    $result=DB::table('sede_institucion')->where('id','=',$id)->get();
 
-    //luego devolver la vista de actualizar con los datos 
-    return view('secretaria.actualizarInstitucion');
+
+      foreach ($result as $r) {
+        $nombreActual=$r->nombre;
+        $nitActual=$r->nit;
+        $rectorActual=$r->rector;
+        $direccionActual=$r->direccion;
+        $telefonoActual=$r->telefono;
+        $correoActual=$r->email;
+      }
+      
+     //luego devolver la vista de actualizar con los datos 
+      return view('secretaria.actualizarInstitucion',['nombre'=>$nombreActual,'nit'=>$nitActual,'rector'=>$rectorActual,
+        'direccion'=>$direccionActual,'telefono'=>$telefonoActual,'correo'=>$correoActual,'id'=>$id]);
   }
 
+  /**
+   */
+  public function actualizarInstitucion($id,Request $request){
+    
+    
+  }
 
   /**
    * Retornar la vista para ver el listado de las instituciones instituciones
@@ -218,21 +233,7 @@ class SecretariaController extends Controller
       }
  }
 
- /**
-  * Función para actualizar los datos una de institución a la que se desea editar
-  */
- public function actualizarInstitucion(Request $request){
-
- }
-
- /**
-  * Función para suspender una institución de la plataforma 
-  * la cual no podra ingresar al sistema por que ya no hace parte del programa de alimentación escolar
-  */
- public function suspenderInstitucin(){
-
- }
-
+ 
   /**
    * Función la cual permite registrar el operador en el sistema
    */
@@ -299,8 +300,6 @@ class SecretariaController extends Controller
 
 
  }
-
-
 
  /**
   * Método que valida que el rector no tenga numeros.

@@ -45,8 +45,8 @@
   <script src="{{asset('js/tether.min.js')}}" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="{{ asset('js/bootstrap.min.js')}}"></script>
 
-<script src="{{ asset('js/jquery-3.2.1.slim.min.js')}}"></script>
-<script src="{{ asset('js/popper.js')}}"></script>
+  <script src="{{ asset('js/jquery-3.2.1.slim.min.js')}}"></script>
+  <script src="{{ asset('js/popper.js')}}"></script>
   <script src="{{ asset('js/jquery.js')}}"></script>
   <script src="{{ asset('js/sweetalert.min.js')}}"></script>
 

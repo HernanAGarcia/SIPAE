@@ -30,22 +30,25 @@
 
 <h2> Listado de Intituciones </h2>
 
-    <table class="table table-hover">
-        <tr>
-            <td>Nombre Institución</td>
-            <td>Rector</td>
-            <td>Opciones</td>
-        </tr>
-        
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre Institución</td>
+                <th scope="col">Rector</td>
+                <th scope="col">Opciones</td>
+            </tr>
+        </thead> 
+        <tbody>
         @foreach($instituciones as $institucion)
             <tr>
+            
                 <td>{{$institucion->nombre}}</td>
                 <td>{{$institucion->rector}}</td>
-                <td><a class="link" href="{{ Route('secretaria.viewActualizarInstitucion') }}"> Editar</a>
+                <td><a class="link" href="{{ Route('secretaria.viewActualizarInstitucion',['id'=>$institucion->id]) }}"> Editar</a>
                 <a class="link" href="#"> Eliminar</a></td>
             </tr>
         @endforeach        
-        </tr>
+        </tbody>
     </table>
 
 

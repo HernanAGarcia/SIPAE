@@ -70,9 +70,9 @@ Route::get('secretaria/RegInstitucion',[
 ])->middleware('secretaria');
 
 /**
- * 
+ * Ruta para mostrar el formulario para actualizar los datos de una institucion educativa registrada
  */
-Route::get('/secretaria/actualizarIns',[
+Route::get('/secretaria/actualizarIns/{id}',[
   'uses'=>'SecretariaController@viewActualizarInstitucion',
   'as'=>'secretaria.viewActualizarInstitucion'
 ])->middleware('secretaria');
@@ -128,7 +128,17 @@ Route::post('/secretaria/registrarInstituciones',[
   'as'=> 'registrarInstitucion'
 ])->middleware('secretaria');
 
+/**
+ * Ruta para actualizar los datos de una institucion en la base de datos
+ */
+Route::post('/secretaria/actualizarInstitucion/{id}',[
+  'uses'=>'SecretariaController@actualizarInstitucion',
+  'as'=>'secretaria.actualizarInstitucion'
+])->middleware('secretaria');
 
+/**
+ * 
+ */
 Route::post('/secretaria/registrarOperador',[
   'uses'=>'SecretariaController@registrarOperador',
   'as'=> 'registrarOperador'
