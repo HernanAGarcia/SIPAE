@@ -14,10 +14,12 @@ use League\Flysystem\Filesystem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use SIPAE\imports\UsersImport;
 use Carbon\Carbon;
 use Alert;
 use Log;
 use Validator;
+use Excel;
 
 
 class SecretariaController extends Controller
@@ -415,6 +417,7 @@ public function actualizarDatos(Request $request){
 
 
   public function subirListado(Request $request){
+    ini_set('max_execution_time', 6000);
 
     $rules = array('archivo' => 'max:5000|mimes:xlsx,xls');
     $messages = [
@@ -423,17 +426,19 @@ public function actualizarDatos(Request $request){
   ];
     $validator = Validator::make(Input::all(), $rules, $messages );
 
-    if($validator-> fails()){
-      return redirect('/secretaria/beneficiarios')->withErrors($validator);
-    }else {
-      $file=$request->file('archivo');
-      $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
-      Storage::disk('informeBeneficiarios')->put($nombre,\File::get($file));
-    }
-      //para insertar en la base de datos
+    // if($validator-> fails()){
+    //   return redirect('/secretaria/beneficiarios')->withErrors($validator);
+    // }else {
 
-      //  $archivos = Storage::disk('informeAlimentos')->files();
-      //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
+      Excel::import(new UsersImport, request()->file('archivo'));
+    //   // $file=$request->file('archivo');
+    //   $nombre =Carbon::now()->toDateString()."-".$file->getClientOriginalName();
+    //   Storage::disk('informeBeneficiarios')->put($nombre,\File::get($file));
+    // }
+    //   //para insertar en la base de datos
+
+    //   //  $archivos = Storage::disk('informeAlimentos')->files();
+    //   //  return \View('institucion.archAlimentos')->with('archivos',$archivos);
 
       $listados = Storage::disk('informeBeneficiarios')->files();
       return \View('secretaria.listadoBeneficiarios')->with('listados',$listados);

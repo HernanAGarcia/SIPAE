@@ -1,9 +1,10 @@
 @extends('secretaria.template.main')
 
 @section('content')
+<div >
 <div class="container">
-    <h1>Aquí se pueden subir los listados de beficiarios (titulares derecho)</h1><br>
-      </br>
+    <h3>Aquí se pueden subir el listado de beneficiarios (titulares derecho)</h3><br>
+      
 
         <form action="/secretaria/beneficiarios" method="post" enctype="multipart/form-data">
           {{csrf_field()}}
@@ -18,8 +19,7 @@
         </form>
 </div>
 
-<div class="container"><br>
-</br>
+<div class="container">
 
       <table class="table table-hover">
        <tr>
@@ -36,7 +36,7 @@
      </table>
 
 </div>
-
+</div>
 
 
 @endsection

@@ -26,14 +26,12 @@ class UserTableSeeder extends Seeder
        //       'telefono'=>'7535600'
        //   ]);
 
-         //  DB::table('users')->insert([
-        //       'nombre_Usuario' => 'Secretaria de Armenia',
-        //       'email' => 'secretaria@gmail.com',
-        //       'password' => bcrypt('secret'),
-        //       'role'=>'secretaria',
-         //      'Id_Sede_Institucion'=>'1',
-         //      'Id_Secretaria'=>'1',
-        //   ]);
+          DB::table('users')->insert([
+        
+              'email' => 'secretaria@gmail.com',
+              'password' => bcrypt('secret'),
+              'role'=>'secretaria'
+          ]);
 
         //  DB::table('users')->insert([
        //     'nombre_Usuario' => 'Instituto Montenegro',

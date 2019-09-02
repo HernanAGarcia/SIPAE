@@ -1,9 +1,18 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 * {
   margin: 0;
 }
 
 html, body {
   height: 100%;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #7386D5;
+  color: #fff;
+  transition: all 0.3s;
 }
 
 html {

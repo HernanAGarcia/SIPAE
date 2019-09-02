@@ -16,6 +16,8 @@ class CreateSecretariasTable extends Migration
         Schema::create('secretaria', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

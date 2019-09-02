@@ -20,8 +20,8 @@ class CreateOperadorsTable extends Migration
             $table->string('email');
             $table->string('direccion');
             $table->string('telefono');
-            $table->integer('Id_Secretaria')->unsigned();
-            $table->foreign('Id_Secretaria')->references('id')->on('secretaria');
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

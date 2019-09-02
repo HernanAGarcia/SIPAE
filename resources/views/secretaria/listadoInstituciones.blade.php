@@ -2,33 +2,32 @@
 
 @section('content')
 <div class="container">
-<h2> Búsqueda de institución</h2>
-<div class="row" >
+    <h2> Búsqueda de institución</h2>
+    <div class="row" >
 
-          <div class="col-md-6">
+        <div class="col-md-6">
             <select data-placeholder="Búsqueda de una institución"
                     class="chosen-select" name="listaInstitucion" id="lista-Institucion" >
-                    <option value=""></option>
-                    @foreach($instituciones as $institucion)
-                        <option value="{{$institucion->id}}">{{$institucion->nombre}}</option>
-                    @endforeach
-              </select>
-          </div>
+                <option value=""></option>
+                @foreach($instituciones as $institucion)
+                    <option value="{{$institucion->id}}">{{$institucion->nombre}}</option>
+                @endforeach
+            </select>
+        </div>
 
-          <div class="col-md-3">
+        <div class="col-md-3">
             <button class="botonBuscar" name="boton-buscar">Buscar</select></t>
-          </div>
-          <div class="col-md-3">
+        </div>
+        <div class="col-md-3">
             <form method="get" action="{{ route('secretaria.registroInstitucion')}}">
             {{ csrf_field() }}
             <button class="btn btn-primary" name="boton-agregar-institucion">Agregar Institución</select>
             </form>
-          </div>
+        </div>
+    </div>
 
-      </div>
 
-
-<h2> Listado de Intituciones </h2>
+    <h2> Listado de Intituciones </h2>
 
     <table class="table table-bordered">
         <thead class="thead-dark">
@@ -50,9 +49,6 @@
         @endforeach        
         </tbody>
     </table>
-
-
-
 </div>
 @endsection
 
