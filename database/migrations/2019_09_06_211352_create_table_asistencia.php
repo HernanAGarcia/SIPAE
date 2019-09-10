@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
-class AlterUsersTable extends Migration
+class CreateTableAsistencia extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +14,12 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-         
-
+        Schema::create('asistencia', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('doc_estudiante');
+            $table->date('fecha_asistencia');
+            $table->integer('id_institucion');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +30,6 @@ class AlterUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-        
-        });
+        //
     }
 }
